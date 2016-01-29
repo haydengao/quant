@@ -1,2 +1,5 @@
-# QuantGUI
-给量化系统做个管理网站
+# Quant
+给亘沣做的量化交易系统，生产环境
+
+## 环境
+CentOS 6.4  Nginx Python3.5 Uwsgi Flask SQLAlchemy

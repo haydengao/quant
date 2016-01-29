@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="desktop landscape"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8"><title>亘沣Quant</title>
+    <script src="/static/js/fire-2.1.0.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="https://achilles.wmcloud.com/achy/amd-config.js" src="/static/js/amd-config.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="achy" src="/static/js/achy.a75bf2ee.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="business/js/index" src="/static/js/index.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/css/yestrap-light.8e2a1ea4.css">
+    <link type="text/css" rel="stylesheet" href="/static/css/font-awesome.min.css">
+    <link type="text/css" rel="stylesheet" href="/static/css/main.78d1255134d0efa598029735c5dfb275.css"><base href=".">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="business/js/main" src="/static/js/main.4901a7b29833184454e7.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="achy/biz/yauth" src="/static/js/yauth.da19a455.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="achy/biz/globalFooter" src="/static/js/globalFooter.0a64eb53.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="highcharts" src="/static/js/highstock.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="achy/biz/globalBar2" src="/static/js/globalBar2.35fbfa4c.js"></script>
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="underscore" src="/static/js/lodash.underscore.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.5c97a3af.css">
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="mathjax" src="/static/js/MathJax.js"></script>
+    <link type="text/css" rel="stylesheet" href="/static/css/style.ccde8427.css">
+    <style type="text/css">
+        .MathJax_Preview {color: #888}
+        #MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+        #MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+        .MathJax_Error {color: #CC0000; font-style: italic}
+    </style>
+    <script src="/static/js/hm.js"></script>
+</head>
+<body class="">
+    <div id="MathJax_Message" style="display: none;"></div>
+    <iframe id="downloader" style="display: none;"></iframe>
+
+<div class="wrapper">
+    <div class="main">
+        <div class="trade">
+            <div class="region-trade-main">
+                <div class="trade-home">
+                    <h3>
+                        交易策略
+                        <div class="monitor paper-monitor">
+                            <div class="monitor-dropdown">
+                                <div class="dropdown dropdown-box">
+                                    <button class="btn btn-link dropdown-toggle" data-toggle="dropdown">
+                                        <i class="fa fa-tachometer">
+                                        </i>
+                                        资源
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <h4>
+                                            模拟交易资源
+                                        </h4>
+                                        <ul class="stat-list">
+                                            <li class="cpu">
+                                                <span class="name">
+                                                    CPU
+                                                </span>
+                                                <span class="used">
+                                                    <span class="bar usage-idle">
+                                                        <span style="width: 0%;">
+                                                        </span>
+                                                    </span>
+                                                <span class="value">
+                                                    0%
+                                                </span>
+                                            </li>
+                                            <li class="mem">
+                                                <span class="name">
+                                                    内存
+                                                </span>
+                                                <span class="used">
+                                                    <span class="bar usage-idle">
+                                                        <span style="width: 0%;">
+                                                        </span>
+                                                    </span>
+                                                <span class="value">
+                                                    --
+                                                </span>
+                                            </li>
+                                            <li class="disk">
+                                                <span class="name">
+                                                    硬盘
+                                                </span>
+                                                <span class="used">
+                                                    <span class="bar usage-idle">
+                                                        <span style="width: 0%;">
+                                                        </span>
+                                                    </span>
+                                                <span class="value">
+                                                    --
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </h3>
+                    <div class="region-strategy-list">
+                        <table class="strategy-list">
+                            <thead>
+                                <tr>
+        <th class="name">名称</th>
+        <th class="status">状态</th>
+        <th class="daily">当日收益率</th>
+        <th class="profit">累计收益率</th>
+        <th class="start">开始日期</th>
+        <th class="end">停止日期</th>
+    </tr>
+</thead>
+<tbody>
+    {% for i in strategies %}
+    <tr class="strategy-item run">
+        <td><a href="/strategy/{{i.name}}" class="detail">{{i.name}}</a></td>
+        <td><span class="status-indicator">{{i.status}}</span></td>
+        
+        {% if i.daily > 0 %}
+        <td><span class="state-rise">{{i.daily}}%</span></td>
+        {% else %}
+        <td><span class="state-fall">{{i.daily}}%</span></td>
+        {% endif %}
+        
+        {% if i.profit > 0 %}
+        <td><span class="state-rise">{{i.profit}}%</span></td>
+        {% else %}
+        <td><span class="state-fall">{{i.profit}}%</span></td>
+        {% endif %}
+        
+        <td>{{i.start}}</td>
+        <td>{{i.end}}</td>
+    </tr>
+    {% endfor %}
+</tbody>
+
+</table></div>
+</div></div>

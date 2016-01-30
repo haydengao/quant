@@ -20,7 +20,7 @@ class Strategy(db.Model):
     end = db.Column(db.Date) #策略结束时间
     surveys = db.relationship('Survey', backref='strategy', lazy='dynamic')
     positions = db.relationship('Position', backref='strategy', lazy='dynamic')
-    transfers = db.relationship('Position', backref='strategy', lazy='dynamic')
+    transfers = db.relationship('Position', backref='strategy_', lazy='dynamic')
 
     def __repr__(self):
         return '<Strategy %r>' % self.name
@@ -40,7 +40,7 @@ class Survey(db.Model):
     information = db.Column(db.Float) #信息比率
     strategy_id = db.Column(db.Integer, db.ForeignKey('strategies.id'))
     positions = db.relationship('Position', backref='date', lazy='dynamic')
-    transfers = db.relationship('Transfer', backref='date', lazy='dynamic')
+    transfers = db.relationship('Transfer', backref='date_', lazy='dynamic')
 
     def __repr__(self):
         return '<Survey %r>' % self.date

@@ -1,5 +1,4 @@
 #encoding:utf-8
-import sys
 import os
 from flask import Flask,render_template
 from flask.ext.sqlalchemy import SQLAlchemy
@@ -11,21 +10,78 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'da
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 
 db = SQLAlchemy(app)
-#app.debug = True
 
 class Strategy(db.Model):
     __tablename__ = 'strategies'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), unique=True)
-    status = db.Column(db.String(64))
-    daily = db.Column(db.Float)
-    profit = db.Column(db.Float)
-    start = db.Column(db.Date)
-    end = db.Column(db.Date)
+    name = db.Column(db.String(64), unique=True, index=True) #策略名称
+    status = db.Column(db.String(64)) #策略状态
+    start = db.Column(db.Date) #策略开始时间
+    end = db.Column(db.Date) #策略结束时间
+    surveys = db.relationship('Survey', backref='strategy', lazy='dynamic')
+    positions = db.relationship('Position', backref='strategy', lazy='dynamic')
+    transfers = db.relationship('Position', backref='strategy', lazy='dynamic')
 
     def __repr__(self):
         return '<Strategy %r>' % self.name
 
+class Survey(db.Model):
+    __tablename__ = 'surveys'
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.Date, unique=True, index=True) #日期
+    daily = db.Column(db.Float) #当日收益
+    profit = db.Column(db.Float) #累计收益
+    sharp = db.Column(db.Float) #夏普比率
+    marketValue = db.Column(db.Float) #持仓市值
+    enable = db.Column(db.Float) #可用金额
+    pullback = db.Column(db.Float) #回撤
+    alpha = db.Column(db.Float) #阿尔法
+    beta = db.Column(db.Float) #贝塔
+    information = db.Column(db.Float) #信息比率
+    strategy_id = db.Column(db.Integer, db.ForeignKey('strategies.id'))
+    positions = db.relationship('Position', backref='date', lazy='dynamic')
+    transfers = db.relationship('Transfer', backref='date', lazy='dynamic')
+
+    def __repr__(self):
+        return '<Survey %r>' % self.date
+
+class Position(db.Model):
+    __tablename__ = 'positions'
+    id = db.Column(db.Integer, primary_key=True)
+    ticker = db.Column(db.String(64), unique=True, index=True) #证券代码
+    name = db.Column(db.String(64)) #证券名称
+    amount = db.Column(db.Integer) #持仓数量
+    cost = db.Column(db.Float) #持仓成本
+    price = db.Column(db.Float) #市价
+    value = db.Column(db.Float) #市值
+    increase = db.Column(db.Float) #当日涨幅
+    weight = db.Column(db.Float) #权重
+    strategy_id = db.Column(db.Integer, db.ForeignKey('strategies.id'))
+    date_id = db.Column(db.Integer, db.ForeignKey('surveys.id'))
+
+    def __repr__(self):
+        return '<Position %r>' % self.ticker
+
+class Transfer(db.Model):
+    __tablename__ = 'transfers'
+    id = db.Column(db.Integer, primary_key=True)
+    ticker = db.Column(db.String(64), unique=True, index=True) #证券代码
+    name = db.Column(db.String(64)) #证券名称
+    direction = db.Column(db.String(64)) #买／卖
+    orderAmount = db.Column(db.Integer) #下单数量
+    dealAmount = db.Column(db.Integer) #成交数量
+    orderTime = db.Column(db.Time) #下单时间
+    dealTime = db.Column(db.Time) #成交时间
+    cost = db.Column(db.Float) #成交均价
+    status = db.Column(db.String(64)) #状态
+    strategy_id = db.Column(db.Integer, db.ForeignKey('strategies.id'))
+    date_id = db.Column(db.Integer, db.ForeignKey('surveys.id'))
+
+    def __repr__(self):
+        return '<Transfer %r>' % self.ticker
+
+
+#app.debug = True
 
 @app.route('/')
 def index():

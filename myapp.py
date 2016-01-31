@@ -38,7 +38,7 @@ class Survey(db.Model):
     alpha = db.Column(db.Float) #阿尔法
     beta = db.Column(db.Float) #贝塔
     information = db.Column(db.Float) #信息比率
-    strategy_id = db.Column(db.Integer, db.ForeignKey('strategies.id'))
+    strategy_id = db.Column(db.Integer, db.ForeignKey('strategies.id')) #所属策略ID
     positions = db.relationship('Position', backref='date', lazy='dynamic')
     transfers = db.relationship('Transfer', backref='date_', lazy='dynamic')
 
@@ -56,8 +56,8 @@ class Position(db.Model):
     value = db.Column(db.Float) #市值
     increase = db.Column(db.Float) #当日涨幅
     weight = db.Column(db.Float) #权重
-    strategy_id = db.Column(db.Integer, db.ForeignKey('strategies.id'))
-    date_id = db.Column(db.Integer, db.ForeignKey('surveys.id'))
+    strategy_id = db.Column(db.Integer, db.ForeignKey('strategies.id')) #所属策略ID
+    date_id = db.Column(db.Integer, db.ForeignKey('surveys.id')) #所属日期ID
 
     def __repr__(self):
         return '<Position %r>' % self.ticker
@@ -74,12 +74,20 @@ class Transfer(db.Model):
     dealTime = db.Column(db.Time) #成交时间
     cost = db.Column(db.Float) #成交均价
     status = db.Column(db.String(64)) #状态
-    strategy_id = db.Column(db.Integer, db.ForeignKey('strategies.id'))
-    date_id = db.Column(db.Integer, db.ForeignKey('surveys.id'))
+    strategy_id = db.Column(db.Integer, db.ForeignKey('strategies.id')) #所属策略ID
+    date_id = db.Column(db.Integer, db.ForeignKey('surveys.id')) #所属日期ID
 
     def __repr__(self):
         return '<Transfer %r>' % self.ticker
 
+class Benchmark(db.Model):
+    __tablename__ = 'benchmarks'
+    id = db.Column(db.Integer, primary_key=True)
+    date = db.Column(db.Date, unique=True, index=True) #日期
+    index = db.Column(db.Float) #上证指数
+
+    def __repr__(self):
+        return '<Benchmark %r>' % self.date
 
 #app.debug = True
 

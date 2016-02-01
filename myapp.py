@@ -11,6 +11,7 @@ app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
 
 db = SQLAlchemy(app)
 
+#策略
 class Strategy(db.Model):
     __tablename__ = 'strategies'
     id = db.Column(db.Integer, primary_key=True)
@@ -25,10 +26,11 @@ class Strategy(db.Model):
     def __repr__(self):
         return '<Strategy %r>' % self.name
 
+#每日概况
 class Survey(db.Model):
     __tablename__ = 'surveys'
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.Date, unique=True, index=True) #日期
+    date = db.Column(db.Date, index=True) #日期
     daily = db.Column(db.Float) #当日收益
     profit = db.Column(db.Float) #累计收益
     sharp = db.Column(db.Float) #夏普比率
@@ -45,10 +47,11 @@ class Survey(db.Model):
     def __repr__(self):
         return '<Survey %r>' % self.date
 
+#当日持仓
 class Position(db.Model):
     __tablename__ = 'positions'
     id = db.Column(db.Integer, primary_key=True)
-    ticker = db.Column(db.String(64), unique=True, index=True) #证券代码
+    ticker = db.Column(db.String(64), index=True) #证券代码
     name = db.Column(db.String(64)) #证券名称
     amount = db.Column(db.Integer) #持仓数量
     cost = db.Column(db.Float) #持仓成本
@@ -62,10 +65,11 @@ class Position(db.Model):
     def __repr__(self):
         return '<Position %r>' % self.ticker
 
+#当日调仓
 class Transfer(db.Model):
     __tablename__ = 'transfers'
     id = db.Column(db.Integer, primary_key=True)
-    ticker = db.Column(db.String(64), unique=True, index=True) #证券代码
+    ticker = db.Column(db.String(64), index=True) #证券代码
     name = db.Column(db.String(64)) #证券名称
     direction = db.Column(db.String(64)) #买／卖
     orderAmount = db.Column(db.Integer) #下单数量
@@ -80,6 +84,7 @@ class Transfer(db.Model):
     def __repr__(self):
         return '<Transfer %r>' % self.ticker
 
+#基准
 class Benchmark(db.Model):
     __tablename__ = 'benchmarks'
     id = db.Column(db.Integer, primary_key=True)

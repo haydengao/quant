@@ -2,6 +2,7 @@
 import os
 from flask import Flask,render_template
 from flask.ext.sqlalchemy import SQLAlchemy
+import datetime
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -40,6 +41,7 @@ class Survey(db.Model):
     alpha = db.Column(db.Float) #阿尔法
     beta = db.Column(db.Float) #贝塔
     information = db.Column(db.Float) #信息比率
+    fluctuation = db.Column(db.Float) #收益波动率
     strategy_id = db.Column(db.Integer, db.ForeignKey('strategies.id')) #所属策略ID
     positions = db.relationship('Position', backref='date', lazy='dynamic')
     transfers = db.relationship('Transfer', backref='date_', lazy='dynamic')
@@ -98,10 +100,11 @@ class Benchmark(db.Model):
 
 @app.route('/')
 def index():
+    today = datetime.date(2016,1,29)
 
     strategies_ = Strategy.query.all()
     strategies = list(range(len(strategies_)))
-
+    
     for i in range(len(strategies_)):
         start = '_'
         end = '_'
@@ -114,30 +117,23 @@ def index():
             end = end
         else:
             end = strategies_[i].end.strftime('%Y-%m-%d')
+        
+        survey = Survey.query.filter_by(strategy_id=i,date=today).first()
     
-        strategies[i] = {'name':strategies_[i].name,'status':strategies_[i].status,'daily':strategies_[i].daily,'profit':strategies_[i].profit,'start':start,'end':end}
+        strategies[i] = {'name':strategies_[i].name,'status':strategies_[i].status,'daily':survey.daily,'profit':survey.profit,'start':start,'end':end}
 
     return render_template('index.html', strategies = strategies)
 
 
 @app.route('/strategy/<name>')
 def strategy(name):
+    today = datetime.date(2016,1,29)
+    
     strategy_ = Strategy.query.filter_by(name=name).first()
+    survey_ = Survey.query.filter_by(strategy_id=strategy_.id,date=today).first()
 
     if strategy_ == None:
         return '<h1>没有这个策略</h1>'
     else:
-        start = '_'
-        end = '_'
-        if strategy_.start == None:
-            start = start
-        else:
-            start = strategy_.start.strftime('%Y-%m-%d')
-        
-        if strategy_.end == None:
-            end = end
-        else:
-            end = strategy_.end.strftime('%Y-%m-%d')
-
-        strategy = {'name':strategy_.name,'status':strategy_.status,'daily':strategy_.daily,'profit':strategy_.profit,'start':start,'end':end}
-        return render_template('strategy.html',strategy = strategy)
+        survey = {'daily':survey_.daily,'profit':survey_.profit,'sharp':survey_.sharp,'marketValue':survey_.marketValue,'enable':survey_.enable,'pullback':survey_.pullback,'alpha':survey_.alpha,'beta':survey_.beta,'information':survey_.information,'fluctuation':survey_.fluctuation}
+        return render_template('strategy.html',name=name,survey = survey)

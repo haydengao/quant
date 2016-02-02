@@ -130,10 +130,14 @@ def strategy(name):
     today = datetime.date(2016,1,29)
     
     strategy_ = Strategy.query.filter_by(name=name).first()
-    survey_ = Survey.query.filter_by(strategy_id=strategy_.id,date=today).first()
 
     if strategy_ == None:
         return '<h1>没有这个策略</h1>'
     else:
+        sttg_id = strategy_.id
+
+        survey_ = Survey.query.filter_by(strategy_id=sttg_id,date=today).first()
+        
         survey = {'daily':survey_.daily,'profit':survey_.profit,'sharp':survey_.sharp,'marketValue':survey_.marketValue,'enable':survey_.enable,'pullback':survey_.pullback,'alpha':survey_.alpha,'beta':survey_.beta,'information':survey_.information,'fluctuation':survey_.fluctuation}
+
         return render_template('strategy.html',name=name,survey = survey)

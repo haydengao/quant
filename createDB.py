@@ -1,6 +1,7 @@
 import myapp as ma
 import datetime
 
+ma.db.drop_all()
 ma.db.create_all()
 
 sttg1 = ma.Strategy(name='恶魔最摇摆', status='正常', start=datetime.date(2016,1,27))

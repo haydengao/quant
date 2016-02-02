@@ -12,7 +12,7 @@ ma.db.session.commit()
 
 sv1_0127 = ma.Survey(date=datetime.date(2016,1,27), daily=-1.3, profit=-1.3, sharp=1.1, marketValue=9233403, enable=2300, pullback=1.3, alpha=-1.3, beta=1.2, information=1.4, fluctuation=1.5, strategy_id=1)
 sv1_0128 = ma.Survey(date=datetime.date(2016,1,28), daily=2.3, profit=2.01, sharp=2.1, marketValue=9800001, enable=2300, pullback=0, alpha=2.01, beta=2.2, information=2.4, fluctuation=2.5, strategy_id=1)
-sv1_0129 = ma.Survey(date=datetime.date(2016,1,29), daily=3.3, profit=3.2, sharp=3.1, marketValue=9999403, enable=2300, pullback=0, alpha=3.4, beta=3.5, information3.6, fluctuation=3.7, strategy_id=1)
+sv1_0129 = ma.Survey(date=datetime.date(2016,1,29), daily=3.3, profit=3.2, sharp=3.1, marketValue=9999403, enable=2300, pullback=0, alpha=3.4, beta=3.5, information=3.6, fluctuation=3.7, strategy_id=1)
 sv2_0128 = ma.Survey(date=datetime.date(2016,1,28), daily=-1.4, profit=-1.4, sharp=1.2, marketValue=233403, enable=300, pullback=1.4, alpha=-1.4, beta=1.2, information=1.05, fluctuation=1.05, strategy_id=2)
 sv2_0129 = ma.Survey(date=datetime.date(2016,1,29), daily=2.04, profit=2.14, sharp=2.2, marketValue=333403, enable=300, pullback=0, alpha=2.04, beta=2.2, information=2.05, fluctuation=2.05, strategy_id=2)
 

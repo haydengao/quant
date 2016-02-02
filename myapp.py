@@ -117,8 +117,10 @@ def index():
             end = end
         else:
             end = strategies_[i].end.strftime('%Y-%m-%d')
+
+        id = strategies_[i].id
         
-        survey = Survey.query.filter_by(strategy_id=i,date=today).first()
+        survey = Survey.query.filter_by(strategy_id=id,date=today).first()
     
         strategies[i] = {'name':strategies_[i].name,'status':strategies_[i].status,'daily':survey.daily,'profit':survey.profit,'start':start,'end':end}
 

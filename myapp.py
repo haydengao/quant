@@ -142,4 +142,36 @@ def strategy(name):
         
         survey = {'daily':survey_.daily,'profit':survey_.profit,'sharp':survey_.sharp,'marketValue':survey_.marketValue,'enable':survey_.enable,'pullback':survey_.pullback,'alpha':survey_.alpha,'beta':survey_.beta,'information':survey_.information,'fluctuation':survey_.fluctuation}
 
-        return render_template('strategy.html',name=name,survey = survey)
+        transfer_ = Transfer.query.filter_by(strategy_id=sttg_id,date_id=Survey.query.filter_by(date=today).first().id)
+        transfer = list(range(len(transfer_)))
+        
+        for i in range(len(transfer_)):
+            deal_amount = '--'
+            deal_time = '--'
+            cost = '--'
+            if transfer_[i].dealAmount == None:
+                deal_amount = deal_amount
+            else:
+                deal_amount = transfer_[i].dealAmount
+
+            if transfer_[i].dealTime == None:
+                deal_time = deal_time
+            else:
+                deal_time = transfer_[i].dealTime.strftime('%H:%M:%S')
+            
+            if transfer_[i].cost == None:
+                cost = cost
+            else:
+                cost = transfer_[i].cost
+            
+            transfer[i] = {'ticker':transfer_[i].ticker,'name':transfer_[i].name,'direction':transfer_[i].direction,'orderAmount':transfer_[i].orderAmount,'dealAmount':deal_amount,'orderTime':transfer_[i].orderTime,'dealTime':deal_time,'cost':cost,'status':transfer_[i].status}
+
+        positions_ = Position.query.filter_by(strategy_id=sttg_id,date_id=Survey.query.filter_by(date=today).first().id)
+        positions = list(range(len(positions_)))
+
+        for i in range(len(positions_)):
+            positions[i] = {'ticker':positions_[i].ticker,'name':positions_[i].name,'amount':positions_[i].amount,'cost':positions_[i].cost,'price':positions_[i].price,'value':positions_[i].value,'increase':positions_[i].increase,'weight':positions_[i].weight}
+
+        today = today.strftime('%Y-%m-%d')
+
+        return render_template('strategy.html',name=name,survey = survey,positions = positions,transfer = transfer,date = today)

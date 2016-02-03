@@ -142,7 +142,7 @@ def strategy(name):
         
         survey = {'daily':survey_.daily,'profit':survey_.profit,'sharp':survey_.sharp,'marketValue':survey_.marketValue,'enable':survey_.enable,'pullback':survey_.pullback,'alpha':survey_.alpha,'beta':survey_.beta,'information':survey_.information,'fluctuation':survey_.fluctuation}
 
-        transfer_ = Transfer.query.filter_by(strategy_id=sttg_id,date_id=Survey.query.filter_by(date=today).first().id)
+        transfer_ = Transfer.query.filter_by(strategy_id=sttg_id,date_id=Survey.query.filter_by(date=today).first().id).all()
         transfer = list(range(len(transfer_)))
         
         for i in range(len(transfer_)):
@@ -166,7 +166,7 @@ def strategy(name):
             
             transfer[i] = {'ticker':transfer_[i].ticker,'name':transfer_[i].name,'direction':transfer_[i].direction,'orderAmount':transfer_[i].orderAmount,'dealAmount':deal_amount,'orderTime':transfer_[i].orderTime,'dealTime':deal_time,'cost':cost,'status':transfer_[i].status}
 
-        positions_ = Position.query.filter_by(strategy_id=sttg_id,date_id=Survey.query.filter_by(date=today).first().id)
+        positions_ = Position.query.filter_by(strategy_id=sttg_id,date_id=Survey.query.filter_by(date=today).first().id).all()
         positions = list(range(len(positions_)))
 
         for i in range(len(positions_)):

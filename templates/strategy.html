@@ -27,6 +27,86 @@
         #MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
         .MathJax_Error {color: #CC0000; font-style: italic}
     </style>
+    <style>
+        /* sorttable styles, these add the placeholder sort arrow and cursor */
+        .sortable th:not(.sorttable_nosort){
+            cursor:pointer;
+        }
+    .sortable th:not(.sorttable_nosort):not(.sorttable_sorted):not(.sorttable_sorted_reverse):after{
+        opacity:0.25;
+        display:inline;
+        content:'\a0\25B4';
+    }
+    /* styles used for these examples */
+    table{
+        padding:0;
+        border-spacing:0;
+        border:1px solid black;
+        text-align:center;
+    }
+    tbody tr:hover{
+        background:#eee;
+    }
+    th{
+        background:#F0F9FF;
+        padding:0 5px;
+        border-top:1px solid #000;
+        border-bottom:1px solid #000;
+    }
+    thead th{border-top:none;}
+    tfoot th{border-bottom:none;}
+    tr:not(:last-child) td{
+        border-bottom:1px dotted gray;
+    }
+    th:not(:last-child), td:not(:last-child){
+        border-right:1px dotted gray;
+    }
+    a{color:#567BF0}
+    a:hover,a:focus{color:#112D87}
+    .ok{color:#019e15;}
+    .err{color:#e11b31;}
+    .works{color:orange;}
+    .question{color:#184df3;}
+    .row{overflow:hidden;}
+    .row>div{
+        float:left;
+        width:300px;
+    }
+    .row.w500>div{
+        width:500px;
+    }
+    /* FAQ styles */
+    div.Q{
+        display:block;
+        cursor:pointer;
+        text-decoration:none;
+        color:#fff;
+        background:#000;
+    }
+    div.Q:before{
+        color:#feba05;
+        content:'Q: ';
+    }
+    div.Q span{
+        display:none;
+        cursor:default;
+        padding:0 0 8px 20px;
+    }
+    div.Q span:before{
+        color:#019e15;
+        content:'A: ';
+    }
+    div.Q:hover{
+        background:#111;
+    }
+    div.Q:focus{
+        pointer-events:none;
+    }
+    div.Q:focus span{
+        pointer-events:auto;
+        display:block;
+    }
+    </style>
     <script src="/static/js/hm.js"></script>
 </head>
 
@@ -142,26 +222,8 @@
     <div class="panel-body">
         <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
             <div class="dataTables_scroll">
-                <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
-                    <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; width: 948px; padding-right: 0px;">
-                        <table class="sortable" role="grid" style="margin-left: 0px; width: 948px;">
-                            <thead>
-                                <tr role="row">
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 122px;" aria-label="证券代码: activate to sort column ascending">证券代码</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 122px;" aria-label="证券名称: activate to sort column ascending">证券名称</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 123px;" aria-label="持仓数量: activate to sort column ascending">持仓数量</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 123px;" aria-label="持仓成本: activate to sort column ascending">持仓成本</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 68px;" aria-label="市价: activate to sort column ascending">市价</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 69px;" aria-label="市值: activate to sort column ascending">市值</th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 123px;" aria-label="当日涨跌: activate to sort column ascending">当日涨跌</th>
-                                    <th class="sorting_desc" tabindex="0" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 70px;" aria-sort="descending" aria-label="权重: activate to sort column ascending">权重</th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-                <div class="sortable" style="position: relative; overflow: auto; height: 368px; width: 100%;">
-                    <table class="table dataTable no-footer" id="DataTables_Table_2" role="grid" style="width: 100%;">
+                <div class="dataTables_scrollBody" style="position: relative; overflow: auto; height: 368px; width: 100%;">
+                    <table class="sortable" id="DataTables_Table_2" role="grid" style="width: 100%;">
                         <thead>
                             <tr role="row" style="height: 0px;">
                                 <th class="sorting" aria-controls="DataTables_Table_2" rowspan="1" colspan="1" style="width: 122px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="证券代码: activate to sort column ascending">
@@ -229,43 +291,6 @@
     <div class="panel-body">
         <div id="DataTables_Table_3_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
             <div class="dataTables_scroll">
-                <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
-                    <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; width: 948px; padding-right: 0px;">
-                        <table class="sortable" role="grid" style="margin-left: 0px; width: 948px;">
-                            <thead>
-                                <tr role="row">
-                                    <th class="sorting_asc" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" style="width: 85px;" aria-sort="ascending" aria-label="证券代码: activate to sort column descending">
-                                        证券代码
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" style="width: 85px;" aria-label="证券名称: activate to sort column ascending">
-                                        证券名称
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" style="width: 50px;" aria-label="买/卖: activate to sort column ascending">
-                                        买/卖
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" style="width: 85px;" aria-label="下单数量: activate to sort column ascending">
-                                        下单数量
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" style="width: 85px;" aria-label="成交数量: activate to sort column ascending">
-                                        成交数量
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" style="width: 85px;" aria-label="下单时间: activate to sort column ascending">
-                                        下单时间
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" style="width: 85px;" aria-label="成交时间: activate to sort column ascending">
-                                        成交时间
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" style="width: 85px;" aria-label="成交均价: activate to sort column ascending">
-                                        成交均价
-                                    </th>
-                                    <th class="sorting" tabindex="0" aria-controls="DataTables_Table_3" rowspan="1" colspan="1" style="width: 70px;" aria-label="状态: activate to sort column ascending">
-                                        状态
-                                    </th>
-                                </tr>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
                 <div class="dataTables_scrollBody" style="position: relative; overflow: auto; height: 368px; width: 100%;">
                     <table class="sortable" id="DataTables_Table_3" role="grid" style="width: 948px;">
                     <thead>

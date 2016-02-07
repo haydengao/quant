@@ -192,7 +192,8 @@ def strategy(name):
 
 @app.route('/test', methods=['POST','GET'])
 def testForm():
+    datee = '2013-01-03'
     form = ExampleForm()
     if form.validate_on_submit():
-        return form.dt.data.strftime('%Y-%m-%d')
-    return render_template('dp.html', form=form)
+        datee = form.dt.data.strftime('%Y-%m-%d')
+    return render_template('dp.html', form=form, datee = datee)

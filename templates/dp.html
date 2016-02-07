@@ -4,10 +4,11 @@
     </head>
     <body>
         
-        <form action="#" method="post">
+        <form action="#show" method="post">
             {{ form.dt(class='datepicker') }}
             {{ form.hidden_tag() }}
             <input type="submit"/>
         </form>
+        <p id="show">{{datee}}</p>
 
     </body>

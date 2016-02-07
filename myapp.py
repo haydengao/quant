@@ -139,9 +139,16 @@ def index():
     return render_template('index.html', strategies = strategies)
 
 
-@app.route('/strategy/<name>')
+@app.route('/strategy/<name>', methods=['POST','GET'])
 def strategy(name):
     today = datetime.date(2016,1,29)
+    date1 = today
+    
+    form1 = ExampleForm()
+    if form1.validate_on_submit():
+        date1 = form.dt.data
+
+    
     
     strategy_ = Strategy.query.filter_by(name=name).first()
 
@@ -178,7 +185,7 @@ def strategy(name):
             
             transfer[i] = {'ticker':transfer_[i].ticker,'name':transfer_[i].name,'direction':transfer_[i].direction,'orderAmount':transfer_[i].orderAmount,'dealAmount':deal_amount,'orderTime':transfer_[i].orderTime,'dealTime':deal_time,'cost':cost,'status':transfer_[i].status}
 
-        positions_ = Position.query.filter_by(strategy_id=sttg_id,date_id=Survey.query.filter_by(date=today).first().id).all()
+        positions_ = Position.query.filter_by(strategy_id=sttg_id,date_id=Survey.query.filter_by(date=date1).first().id).all()
         positions = list(range(len(positions_)))
 
         for i in range(len(positions_)):
@@ -186,7 +193,7 @@ def strategy(name):
 
         today = today.strftime('%Y-%m-%d')
 
-        return render_template('strategy.html',name=name,survey = survey,positions = positions,transfer = transfer,date = today)
+        return render_template('strategy.html',name=name,survey = survey,positions = positions,transfer = transfer,date = today,form1 = form1)
 
 
 

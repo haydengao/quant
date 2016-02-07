@@ -209,19 +209,24 @@
                     <div class="panel-heading">
                         证券持仓
                         <div class="date">
-            <div class="input-group input-group-sm">
-                <input name="date" type="text" class="form-control hasDatepicker" readonly="" id="dp1453263032666" placeholder="2016-01-20">
-                <span class="input-group-addon">
-                    <i class="fa fa-calendar"></i>
-                </span>
-            </div>
-        </div>
+                            
+                            
+                            <form action="#positions" method="post">
+                                {{ form1.dt(class='datepicker') }}
+                                {{ form1.hidden_tag() }}
+                                <input type="submit"/>
+                            </form>
+
+
+
+
+                        </div>
     </div>
     <div class="panel-body">
         <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
             <div class="dataTables_scroll">
                 <div class="dataTables_scrollBody" style="position: relative; overflow: auto; height: 368px; width: 100%;">
-                    <table class="sortable" role="grid" style="width: 100%;">
+                    <table class="sortable" id="positions" role="grid" style="width: 100%;">
                             <tr>
                                 <th>证券代码</th>
                                 <th>证券名称</th>

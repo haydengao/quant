@@ -3,12 +3,15 @@ import os
 from flask import Flask,render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 import datetime
+from flask_wtf import Form
+from wtforms.fields.html5 import DateField
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')
 app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+app.secret_key = 'SHH!'
 
 db = SQLAlchemy(app)
 
@@ -96,6 +99,15 @@ class Benchmark(db.Model):
     def __repr__(self):
         return '<Benchmark %r>' % self.date
 
+
+
+
+class ExampleForm(Form):
+    dt = DateField('DatePicker', format='%Y-%m-%d')
+
+
+
+
 #app.debug = True
 
 @app.route('/')
@@ -175,3 +187,12 @@ def strategy(name):
         today = today.strftime('%Y-%m-%d')
 
         return render_template('strategy.html',name=name,survey = survey,positions = positions,transfer = transfer,date = today)
+
+
+
+@app.route('/test', methods=['POST','GET'])
+def testForm():
+    form = ExampleForm()
+    if form.validate_on_submit():
+        return form.dt.data.strftime('%Y-%m-%d')
+    return render_template('dp.html', form=form)

@@ -29,12 +29,12 @@ html_page = """<!DOCTYPE HTML>
                 else
                 {
                     var response = JSON.parse(req.responseText)
-                    document.getElementById('myDiv').innerHTML = "<h1>" + response.username + "</h1>"
+                    document.getElementById('myDiv').innerHTML = response.username
                 }
             }
         }
     
-        req.open('POST', '/ajax')
+        req.open('POST', '/')
         req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
         var un = document.getElementById('scname').value
         var sec = document.getElementById('secret').value
@@ -57,15 +57,10 @@ html_page = """<!DOCTYPE HTML>
 </body>
 </html>"""
 
-@app.route('/')
+@app.route('/', methods = ['POST'])
 def index():
-    return html_page
-        
-        
-@app.route('/ajax', methods = ['POST'])
-def ajax_request():
     username = request.form['username']
-    return jsonify(username=username)
+    return html_page,jsonify(username=username)
     
     
 if __name__ == "__main__":

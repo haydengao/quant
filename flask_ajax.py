@@ -29,7 +29,7 @@ html_page = """<!DOCTYPE HTML>
                 else
                 {
                     var response = JSON.parse(req.responseText)
-                    document.getElementById('myDiv').innerHTML = <h1>response.username</h1>
+                    document.getElementById('myDiv').innerHTML = "<h1>" + response.username + "</h1>"
                 }
             }
         }

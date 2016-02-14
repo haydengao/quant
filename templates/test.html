@@ -1,48 +1,35 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <title>Rough AJAX Test</title>
+<!DOCTYPE html>
+<!-- saved from url=(0047)http://vitalets.github.io/bootstrap-datepicker/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Datepicker for Bootstrap</title>
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/datepicker.css" rel="stylesheet">
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/js/bootstrap-datepicker.js"></script>
+    
+  </head>
+
+  <body>
+  
+			  <div class="input-append date" id="dp3">
+				<input class="span2" size="16" type="text" readonly="">
+				<span class="add-on"><i class="icon-th"></i></span>
+			  </div>
+              <input type="hidden" id="hidden_input">
+	<script>
+		$(document).ready(function(){
+          $('#dp3').datepicker({
+                               format: "yyyy-mm-dd"
+          })
+          .on('changeDate', function(ev){
+              $('#dp3').datepicker('hide');
+              $('#hidden_input').val(
+                  $('#dp3').datepicker('getFormattedDate')
+              );
+          });
+		});
         
-        <script>
-            function loadXMLDoc()
-            {
-                var req = new XMLHttpRequest()
-                req.onreadystatechange = function()
-                {
-                    if (req.readyState == 4)
-                    {
-                        if (req.status != 200)
-                        {
-                            //error handling code here
-                        }
-                        else
-                        {
-                            var response = JSON.parse(req.responseText)
-                            document.getElementById('myDiv').innerHTML = "<h1>" + response.username + "</h1>"
-                        }
-                    }
-                }
-                
-                req.open('POST', '/ajax')
-                req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
-                req.send(null)
-                
-                return false
-            }
-        </script>
-        
-    </head>
-    <body>
-        <h1>Flask AJAX Test</h1>
-        
-        
-        
-        <form action="" method="post">
-            {{ form1.dt(class='datepicker') }}
-            {{ form1.hidden_tag() }}
-            <input type="submit" onclick="return loadXMLDoc()"/>
-        </form>
-        
-        <div id="myDiv"></div>
-    </body>
-</html>
+
+	</script>
+  </body></html>

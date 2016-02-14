@@ -5,7 +5,7 @@
 #       file for the sake of completeness of answer.
 #       It's generally a very bad way to do things :)
 #
-from flask import (Flask, request, jsonify)
+from flask import (Flask, request, jsonify, render_template)
                    
 app = Flask(__name__)
 
@@ -59,7 +59,7 @@ html_page = """<!DOCTYPE HTML>
 
 @app.route('/')
 def index():
-    return html_page
+    return render_template('test.html')
         
         
 @app.route('/ajax', methods = ['POST'])

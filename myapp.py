@@ -139,7 +139,7 @@ def index():
     return render_template('index.html', strategies = strategies)
 
 
-@app.route('/strategy/<name>', methods=['POST','GET'])
+@app.route('/strategy/<name>')
 def strategy(name):
     today = datetime.date(2016,1,29)
     date1 = today

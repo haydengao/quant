@@ -34,7 +34,7 @@ html_page = """<!DOCTYPE HTML>
             }
         }
     
-        req.open('POST', '/')
+        req.open('POST', '/ajax')
         req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
         var un = document.getElementById('scname').value
         var sec = document.getElementById('secret').value
@@ -57,10 +57,15 @@ html_page = """<!DOCTYPE HTML>
 </body>
 </html>"""
 
-@app.route('/', methods = ['POST'])
+@app.route('/')
 def index():
+    return html_page
+        
+        
+@app.route('/ajax', methods = ['POST'])
+def ajax_request():
     username = request.form['username']
-    return html_page,jsonify(username=username)
+    return jsonify(username=username)
     
     
 if __name__ == "__main__":

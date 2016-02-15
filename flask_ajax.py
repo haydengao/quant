@@ -1,6 +1,7 @@
 from flask import (Flask, request, jsonify, render_template)
 import datetime
 import myapp as ma
+import types
                    
 app = Flask(__name__)
 

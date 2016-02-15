@@ -33,7 +33,14 @@
                         else
                         {
                             var response = JSON.parse(req.responseText)
-                            document.getElementById('myDiv').innerHTML = response.name0+","+response.name1+","+response.name2
+                            if (response.name != 999)
+                            {
+                                document.getElementById('myDiv').innerHTML = response.id+","+response.ticker+","+response.name+","+response.amount+","+response.cost+","+response.price+","+response.value+","+response.increase+","+response.weight
+                            }
+                            else
+                            {
+                                document.getElementById('myDiv').innerHTML = "该日没数据"
+                            }
                         }
                     }
                 }

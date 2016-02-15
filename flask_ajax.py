@@ -14,15 +14,15 @@ def index():
 def ajax_request():
     date = request.form['date']
     formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
-    '''
-    pt = ma.Position.query.filter_by(strategy_id=1,date_id=Survey.query.filter_by(date=formatDate).first().id).first()
+    
+    pt = ma.Position.query.filter_by(strategy_id=1,date_id=ma.Survey.query.filter_by(date=formatDate).first().id).first()
     if pt == None:
         return jsonify({'name':999})
     else:
         return jsonify({'id':pt.id, 'ticker':pt.ticker, 'name':pt.name, 'amount':pt.amount, 'cost':pt.cost, 'price':pt.price, 'value':pt.value, 'increase':pt.increase, 'weight':pt.weight})
-'''
 
-    return jsonify({'name':formatDate.strftime('%Y-%m-%d')})
+
+#    return jsonify({'name':formatDate.strftime('%Y-%m-%d')})
     
 if __name__ == "__main__":
     app.run(debug = True)

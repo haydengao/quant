@@ -22,7 +22,7 @@ def ajax_request():
         return jsonify({'id':pt.id, 'ticker':pt.ticker, 'name':pt.name, 'amount':pt.amount, 'cost':pt.cost, 'price':pt.price, 'value':pt.value, 'increase':pt.increase, 'weight':pt.weight})
 '''
 
-    return jsonify({'name0':date[0],'name1':date[1],'name2':date[2],'name3':date[3]})
+    return jsonify({'name0':date[0:3],'name1':date[5:6],'name2':date[8:9]})
     
 if __name__ == "__main__":
     app.run(debug = True)

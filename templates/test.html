@@ -33,7 +33,7 @@
                         else
                         {
                             var response = JSON.parse(req.responseText)
-                            document.getElementById('myDiv').innerHTML = response.date
+                            document.getElementById('myDiv').innerHTML = response.id+","+response.ticker+","+response.name+","+response.amount+","+response.cost+","+response.price+","+response.value+","+response.increase+","+response.weight
                         }
                     }
                 }

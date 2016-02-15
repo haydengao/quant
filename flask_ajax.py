@@ -13,7 +13,7 @@ def index():
 @app.route('/ajax', methods = ['POST'])
 def ajax_request():
     date = request.form['date']
-    formatDate = datetime.date(date[0:4],date[5:7],date[8:10])
+    formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
     
     pt = ma.Position.query.filter_by(strategy_id=1,date_id=Survey.query.filter_by(date=formatDate).first().id).first()
     if pt == None:

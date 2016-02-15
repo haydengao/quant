@@ -17,7 +17,7 @@ def ajax_request():
     
     pt = ma.Position.query.filter_by(strategy_id=1,date_id=ma.Survey.query.filter_by(date=formatDate).first().id).first()
     if pt == None:
-        return jsonify({'name':999})
+        return jsonify({'name':'999'})
     else:
         return jsonify({'id':pt.id, 'ticker':pt.ticker, 'name':pt.name, 'amount':pt.amount, 'cost':pt.cost, 'price':pt.price, 'value':pt.value, 'increase':pt.increase, 'weight':pt.weight})
 

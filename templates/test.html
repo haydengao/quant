@@ -33,13 +33,13 @@
                         else
                         {
                             var response = JSON.parse(req.responseText)
-                            if (response.name != '999')
+                            if (response.name != "该日没数据")
                             {
                                 document.getElementById('myDiv').innerHTML = response.id+","+response.ticker+","+response.name+","+response.amount+","+response.cost+","+response.price+","+response.value+","+response.increase+","+response.weight
                             }
                             else
                             {
-                                document.getElementById('myDiv').innerHTML = "该日没数据"
+                                document.getElementById('myDiv').innerHTML = response.name
                             }
                         }
                     }

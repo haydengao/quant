@@ -14,12 +14,15 @@ def index():
 def ajax_request():
     date = request.form['date']
     formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
-    
-    pt = ma.Position.query.filter_by(strategy_id=1,date_id=ma.Survey.query.filter_by(date=formatDate).first().id).first()
-    if pt == None:
-        return jsonify({'name':'999'})
+    dateID = ma.Survey.query.filter_by(date=formatDate).first()
+    if dateID != None:
+        pt = ma.Position.query.filter_by(strategy_id=1,date_id=dateID.id).first()
+        if pt == None:
+            return jsonify({'name':"该日没数据"})
+        else:
+            return jsonify({'id':pt.id, 'ticker':pt.ticker, 'name':pt.name, 'amount':pt.amount, 'cost':pt.cost, 'price':pt.price, 'value':pt.value, 'increase':pt.increase, 'weight':pt.weight})
     else:
-        return jsonify({'id':pt.id, 'ticker':pt.ticker, 'name':pt.name, 'amount':pt.amount, 'cost':pt.cost, 'price':pt.price, 'value':pt.value, 'increase':pt.increase, 'weight':pt.weight})
+        return jsonify({'name':"该日没数据"})
 
 
 #    return jsonify({'name':formatDate.strftime('%Y-%m-%d')})

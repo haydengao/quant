@@ -10,7 +10,7 @@ def index():
     return render_template('test.html')
         
         
-@app.route('/ajax', methods = ['POST'])
+@app.route('/positions', methods = ['POST'])
 def ajax_request():
     date = request.form['date']
     formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
@@ -28,6 +28,46 @@ def ajax_request():
             return jsonify(results=pt)
     else:
         return jsonify({'name':"该日没数据"})
+
+
+
+@app.route('/transfers', methods = ['POST'])
+def ajax_request():
+    date = request.form['date']
+    formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
+    dateID = ma.Survey.query.filter_by(date=formatDate).first()
+    if dateID != None:
+        ts_ = ma.Transfer.query.filter_by(strategy_id=1,date_id=dateID.id).all()
+        if ts_ == None:
+            return jsonify({'name':"该日没数据"})
+        else:
+            ts = list(range(len(ts_)))
+            
+            for i in range(len(ts_)):
+                deal_amount = '--'
+                deal_time = '--'
+                cost = '--'
+                if ts_[i].dealAmount == None:
+                    deal_amount = deal_amount
+                else:
+                    deal_amount = ts_[i].dealAmount
+                
+                if ts_[i].dealTime == None:
+                    deal_time = deal_time
+                else:
+                    deal_time = ts_[i].dealTime.strftime('%H:%M:%S')
+                
+                if ts_[i].cost == None:
+                    cost = cost
+                else:
+                    cost = ts_[i].cost
+                
+                ts[i] = {'ticker':ts_[i].ticker, 'name':ts_[i].name, 'direction':ts_[i].direction, 'oederAmount':ts_[i].orderAmount, 'dealAmount':deal_amount, 'orderTime':ts_[i].orderTime, 'dealTime':deal_time, 'cost':cost, 'status':ts_[i].status}
+            
+            return jsonify(results=ts)
+    else:
+        return jsonify({'name':"该日没数据"})
+
 
 
 #    return jsonify({'name':formatDate.strftime('%Y-%m-%d')})

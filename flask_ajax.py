@@ -56,7 +56,7 @@ def transfers_ajax_request():
                 if ts_[i].cost != None:
                     cost = ts_[i].cost
                 
-                ts[i] = {'ticker':ts_[i].ticker, 'name':ts_[i].name, 'direction':ts_[i].direction, 'oederAmount':ts_[i].orderAmount, 'dealAmount':deal_amount, 'orderTime':ts_[i].orderTime, 'dealTime':deal_time, 'cost':cost, 'status':ts_[i].status}
+                ts[i] = {'ticker':ts_[i].ticker, 'name':ts_[i].name, 'direction':ts_[i].direction, 'oederAmount':ts_[i].orderAmount, 'dealAmount':deal_amount, 'orderTime':ts_[i].orderTime.strftime('%H:%M:%S'), 'dealTime':deal_time, 'cost':cost, 'status':ts_[i].status}
             
             return jsonify(results=ts)
     else:

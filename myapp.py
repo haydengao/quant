@@ -183,7 +183,7 @@ def strategy(name):
             else:
                 cost = transfer_[i].cost
             
-            transfer[i] = {'ticker':transfer_[i].ticker,'name':transfer_[i].name,'direction':transfer_[i].direction,'orderAmount':transfer_[i].orderAmount,'dealAmount':deal_amount,'orderTime':transfer_[i].orderTime,'dealTime':deal_time,'cost':cost,'status':transfer_[i].status}
+            transfer[i] = {'ticker':transfer_[i].ticker,'name':transfer_[i].name,'direction':transfer_[i].direction,'orderAmount':transfer_[i].orderAmount,'dealAmount':deal_amount,'orderTime':transfer_[i].orderTime.strftime('%H:%M:%S'),'dealTime':deal_time,'cost':cost,'status':transfer_[i].status}
 
         positions_ = Position.query.filter_by(strategy_id=sttg_id,date_id=Survey.query.filter_by(date=date1).first().id).all()
         positions = list(range(len(positions_)))

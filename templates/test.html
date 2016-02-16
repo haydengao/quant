@@ -37,8 +37,8 @@
                             {
                                 var out = "<table>";
                                 
-                                for(i = 0; i < response.length; i++) {
-                                    out += "<tr><td>" + response[i].ticker + "</td><td>" + response[i].name + "</td><td>" + response[i].amount + "</td><td>" + response[i].cost + "</td><td>" + response[i].price + "</td><td>" + response[i].value + "</td><td>" + response[i].increase+ "</td><td>" + response[i].weight + "</td></tr>";
+                                for(i = 0; i < response.results.length; i++) {
+                                    out += "<tr><td>" + response.results[i].ticker + "</td><td>" + response.results[i].name + "</td><td>" + response.results[i].amount + "</td><td>" + response.results[i].cost + "</td><td>" + response.results[i].price + "</td><td>" + response.results[i].value + "</td><td>" + response.results[i].increase+ "</td><td>" + response.results[i].weight + "</td></tr>";
                                 }
                                 
                                 out += "</table>";

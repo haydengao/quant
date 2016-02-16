@@ -27,7 +27,7 @@ def ajax_request():
             
             return jsonify([{'ticker':'a1', 'name':'a2', 'amount':'a3', 'cost':'a4', 'price':'a5', 'value':'a6', 'increase':'a8', 'weight':'a9'},{'ticker':'b1', 'name':'b2', 'amount':'b3', 'cost':'b4', 'price':'b6', 'value':'b7', 'increase':'b8', 'weight':'b9'}])
     else:
-        return jsonify([{'ticker':'a1', 'name':'a2', 'amount':'a3', 'cost':'a4', 'price':'a5', 'value':'a6', 'increase':'a8', 'weight':'a9'},{'ticker':'b1', 'name':'b2', 'amount':'b3', 'cost':'b4', 'price':'b6', 'value':'b7', 'increase':'b8', 'weight':'b9'}])
+        return jsonify(results=[{'ticker':'a1', 'name':'a2', 'amount':'a3', 'cost':'a4', 'price':'a5', 'value':'a6', 'increase':'a8', 'weight':'a9'},{'ticker':'b1', 'name':'b2', 'amount':'b3', 'cost':'b4', 'price':'b6', 'value':'b7', 'increase':'b8', 'weight':'b9'}])
 
 
 #    return jsonify({'name':formatDate.strftime('%Y-%m-%d')})

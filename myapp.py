@@ -3,8 +3,6 @@ import os
 from flask import Flask,render_template
 from flask.ext.sqlalchemy import SQLAlchemy
 import datetime
-from flask_wtf import Form
-from wtforms.fields.html5 import DateField
 
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -136,12 +134,6 @@ def strategy(name):
     today = datetime.date(2016,1,29)
     date1 = today
     
-    form1 = ExampleForm()
-    if form1.validate_on_submit():
-        date1 = form.dt.data
-
-    
-    
     strategy_ = Strategy.query.filter_by(name=name).first()
 
     if strategy_ == None:
@@ -160,19 +152,13 @@ def strategy(name):
             deal_amount = '--'
             deal_time = '--'
             cost = '--'
-            if transfer_[i].dealAmount == None:
-                deal_amount = deal_amount
-            else:
+            if transfer_[i].dealAmount != None:
                 deal_amount = transfer_[i].dealAmount
 
-            if transfer_[i].dealTime == None:
-                deal_time = deal_time
-            else:
+            if transfer_[i].dealTime != None:
                 deal_time = transfer_[i].dealTime.strftime('%H:%M:%S')
             
-            if transfer_[i].cost == None:
-                cost = cost
-            else:
+            if transfer_[i].cost != None:
                 cost = transfer_[i].cost
             
             transfer[i] = {'ticker':transfer_[i].ticker,'name':transfer_[i].name,'direction':transfer_[i].direction,'orderAmount':transfer_[i].orderAmount,'dealAmount':deal_amount,'orderTime':transfer_[i].orderTime.strftime('%H:%M:%S'),'dealTime':deal_time,'cost':cost,'status':transfer_[i].status}
@@ -185,7 +171,7 @@ def strategy(name):
 
         today = today.strftime('%Y-%m-%d')
 
-        return render_template('strategy.html',name=name,survey = survey,positions = positions,transfer = transfer,today = today)
+        return render_template('strategy.html',name = name,survey = survey,positions = positions,transfer = transfer,today = today)
 
 
 @app.route('/positions', methods = ['POST'])

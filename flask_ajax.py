@@ -18,17 +18,16 @@ def ajax_request():
     if dateID != None:
         pt_ = ma.Position.query.filter_by(strategy_id=1,date_id=dateID.id).all()
         if pt_ == None:
-            return jsonify({'name':"该日没持仓"})
+            return jsonify({'name':"该日没数据"})
         else:
-            '''
             pt = list(range(len(pt_)))
             
             for i in range(len(pt_)):
                 pt[i] = {'ticker':pt_[i].ticker, 'name':pt_[i].name, 'amount':pt_[i].amount, 'cost':pt_[i].cost, 'price':pt_[i].price, 'value':pt_[i].value, 'increase':pt_[i].increase, 'weight':pt_[i].weight}
-            '''
+            
             return jsonify([{'ticker':'a1', 'name':'a2', 'amount':'a3', 'cost':'a4', 'price':'a5', 'value':'a6', 'increase':'a8', 'weight':'a9'},{'ticker':'b1', 'name':'b2', 'amount':'b3', 'cost':'b4', 'price':'b6', 'value':'b7', 'increase':'b8', 'weight':'b9'}])
     else:
-        return jsonify({'name':"没有这一天"})
+        return jsonify([{'ticker':'a1', 'name':'a2', 'amount':'a3', 'cost':'a4', 'price':'a5', 'value':'a6', 'increase':'a8', 'weight':'a9'},{'ticker':'b1', 'name':'b2', 'amount':'b3', 'cost':'b4', 'price':'b6', 'value':'b7', 'increase':'b8', 'weight':'b9'}])
 
 
 #    return jsonify({'name':formatDate.strftime('%Y-%m-%d')})

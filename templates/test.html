@@ -38,7 +38,7 @@
                                 var out = "<table>";
                                 
                                 for(i = 0; i < response.length; i++) {
-                                    out += "<tr><td>" + response[i].ticker + "</td><td>" + response[i].name + "</td><td>" + response[i].amount + "</td><td>" + response[i].cost + "</td><td>" + response[i].price + "</td><td>" + response[i].value + "</td><td>" + response[i].increase+ "</td><td>" + response[i].weight + "</td></tr>"
+                                    out += "<tr><td>" + response[i].ticker + "</td><td>" + response[i].name + "</td><td>" + response[i].amount + "</td><td>" + response[i].cost + "</td><td>" + response[i].price + "</td><td>" + response[i].value + "</td><td>" + response[i].increase+ "</td><td>" + response[i].weight + "</td></tr>";
                                 }
                                 
                                 out += "</table>";
@@ -46,7 +46,7 @@
                             }
                             else
                             {
-                                document.getElementById('myDiv').innerHTML = response.name
+                                document.getElementById('myDiv').innerHTML = response.name;
                             }
                         }
                     }

@@ -47,19 +47,13 @@ def transfers_ajax_request():
                 deal_amount = '--'
                 deal_time = '--'
                 cost = '--'
-                if ts_[i].dealAmount == None:
-                    deal_amount = deal_amount
-                else:
+                if ts_[i].dealAmount != None:
                     deal_amount = ts_[i].dealAmount
                 
-                if ts_[i].dealTime == None:
-                    deal_time = deal_time
-                else:
+                if ts_[i].dealTime != None:
                     deal_time = ts_[i].dealTime.strftime('%H:%M:%S')
                 
-                if ts_[i].cost == None:
-                    cost = cost
-                else:
+                if ts_[i].cost != None:
                     cost = ts_[i].cost
                 
                 ts[i] = {'ticker':ts_[i].ticker, 'name':ts_[i].name, 'direction':ts_[i].direction, 'oederAmount':ts_[i].orderAmount, 'dealAmount':deal_amount, 'orderTime':ts_[i].orderTime, 'dealTime':deal_time, 'cost':cost, 'status':ts_[i].status}
@@ -68,9 +62,6 @@ def transfers_ajax_request():
     else:
         return jsonify({'name':"该日没数据"})
 
-
-
-#    return jsonify({'name':formatDate.strftime('%Y-%m-%d')})
     
 if __name__ == "__main__":
     app.run(debug = True)

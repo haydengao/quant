@@ -16,11 +16,16 @@ def ajax_request():
     formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
     dateID = ma.Survey.query.filter_by(date=formatDate).first()
     if dateID != None:
-        pt = ma.Position.query.filter_by(strategy_id=1,date_id=dateID.id).first()
-        if pt == None:
+        pt_ = ma.Position.query.filter_by(strategy_id=1,date_id=dateID.id).all()
+        if pt_ == None:
             return jsonify({'name':"该日没数据"})
         else:
-            return jsonify({'id':pt.id, 'ticker':pt.ticker, 'name':pt.name, 'amount':pt.amount, 'cost':pt.cost, 'price':pt.price, 'value':pt.value, 'increase':pt.increase, 'weight':pt.weight})
+            pt = list(range(len(pt_)))
+            
+            for i in range(len(pt_)):
+                pt[i] = {'ticker':pt_[i].ticker, 'name':pt_[i].name, 'amount':pt_[i].amount, 'cost':pt_[i].cost, 'price':pt_[i].price, 'value':pt_[i].value, 'increase':pt_[i].increase, 'weight':pt_[i].weight}
+            
+            return jsonify(pt)
     else:
         return jsonify({'name':"该日没数据"})
 

@@ -12,7 +12,7 @@
   
         <div class="input-append date" id="dp3">
             <input class="span2" size="16" type="text" readonly="">
-            <span class="add-on"><i class="icon-th"></i></span>
+            <span class="add-on"><i class="fa fa-calendar"></i></span>
         </div>
         <input type="hidden" name="secret" id="secret" value="shhh">
         <input type="hidden" id="hidden_input">
@@ -35,7 +35,14 @@
                             var response = JSON.parse(req.responseText)
                             if (response.name != "该日没数据")
                             {
-                                document.getElementById('myDiv').innerHTML = response.id+","+response.ticker+","+response.name+","+response.amount+","+response.cost+","+response.price+","+response.value+","+response.increase+","+response.weight
+                                var out = "<table>";
+                                
+                                for(i = 0; i < response.length; i++) {
+                                    out += "<tr><td>" + response[i].ticker + "</td><td>" + response[i].name + "</td><td>" + response[i].amount + "</td><td>" + response[i].cost + "</td><td>" + response[i].price + "</td><td>" + response[i].value + "</td><td>" + response[i].increase+ "</td><td>" + response[i].weight + "</td></tr>"
+                                }
+                                
+                                out += "</table>";
+                                document.getElementById('myDiv').innerHTML = out;
                             }
                             else
                             {

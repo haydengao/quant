@@ -11,7 +11,7 @@ def index():
         
         
 @app.route('/positions', methods = ['POST'])
-def ajax_request():
+def positions_ajax_request():
     date = request.form['date']
     formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
     dateID = ma.Survey.query.filter_by(date=formatDate).first()
@@ -32,7 +32,7 @@ def ajax_request():
 
 
 @app.route('/transfers', methods = ['POST'])
-def ajax_request():
+def transfers_ajax_request():
     date = request.form['date']
     formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
     dateID = ma.Survey.query.filter_by(date=formatDate).first()

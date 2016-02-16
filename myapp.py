@@ -1,6 +1,6 @@
 #encoding:utf-8
 import os
-from flask import Flask,render_template
+from flask import (Flask, render_template, request, jsonify)
 from flask.ext.sqlalchemy import SQLAlchemy
 import datetime
 

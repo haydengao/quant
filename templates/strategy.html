@@ -5,7 +5,7 @@
     <link type="text/css" rel="stylesheet" href="/static/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="/static/css/main.78d1255134d0efa598029735c5dfb275.css">
     <base href=".">
-
+    <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" src="/static/js/sorttable.js"></script>
     <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="highcharts" src="/static/js/highstock.js"></script>
     <link type="text/css" rel="stylesheet" href="/static/css/style.5c97a3af.css">
     <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="mathjax" src="/static/js/MathJax.js"></script>
@@ -422,7 +422,7 @@
                     var response = JSON.parse(req.responseText)
                     if (response.name != "该日没数据")
                     {
-                        var out = "<script type='text/javascript' charset='utf-8' async='async' data-requirecontext='_' src='/static/js/sorttable.js'></script><table class='sortable' role='grid' style='width: 100%;'><tr><th>证券代码</th><th>证券名称</th><th>持仓数量</th><th>持仓成本</th><th>市价</th><th>市值</th><th>当日涨跌</th><th>权重</th></tr>";
+                        var out = "<table class='sortable' role='grid' style='width: 100%;'><tr><th>证券代码</th><th>证券名称</th><th>持仓数量</th><th>持仓成本</th><th>市价</th><th>市值</th><th>当日涨跌</th><th>权重</th></tr>";
                         
                         for(i = 0; i < response.results.length; i++) {
                             out += "<tr role='row' class='odd'><td>" + response.results[i].ticker + "</td><td>" + response.results[i].name + "</td><td>" + response.results[i].amount + "</td><td>" + response.results[i].cost + "</td><td>" + response.results[i].price + "</td><td>" + response.results[i].value + "</td>";
@@ -473,7 +473,7 @@
                     var response = JSON.parse(req.responseText)
                     if (response.name != "该日没数据")
                     {
-                        var out = "<script type='text/javascript' charset='utf-8' async='async' data-requirecontext='_' src='/static/js/sorttable.js'></script><table class='sortable' role='grid' style='width: 948px;'><tr><th>证券代码</th><th>证券名称</th><th>买/卖</th><th>下单数量</th><th>成交数量</th><th>下单时间</th><th>成交时间</th><th>成交均价</th><th>状态</th></tr>";
+                        var out = "<table class='sortable' role='grid' style='width: 948px;'><tr><th>证券代码</th><th>证券名称</th><th>买/卖</th><th>下单数量</th><th>成交数量</th><th>下单时间</th><th>成交时间</th><th>成交均价</th><th>状态</th></tr>";
                         
                         for(i = 0; i < response.results.length; i++) {
                             out += "<tr role='row' class='odd'><td>" + response.results[i].ticker + "</td><td>" + response.results[i].name + "</td>";

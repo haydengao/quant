@@ -233,7 +233,8 @@
         <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
             <div class="dataTables_scroll">
                 <div class="dataTables_scrollBody" style="position: relative; overflow: auto; height: 368px; width: 100%;">
-                    <table class="sortable" id="positions" role="grid" style="width: 100%;">
+                    <div id="positions">
+                    <table class="sortable" role="grid" style="width: 100%;">
                             <tr>
                                 <th>证券代码</th>
                                 <th>证券名称</th>
@@ -244,8 +245,6 @@
                                 <th>当日涨跌</th>
                                 <th>权重</th>
                             </tr>
-                            
-                            <div id="positions">
                                 {% for i in positions %}
                                 <tr role="row" class="odd">
                                     <td>{{i.ticker}}</td>
@@ -262,10 +261,8 @@
                                     <td>{{i.weight}}%</td>
                                 </tr>
                                 {% endfor %}
-                            </div>
-                            
-
                     </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -293,8 +290,9 @@
         <div id="DataTables_Table_3_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
             <div class="dataTables_scroll">
                 <div class="dataTables_scrollBody" style="position: relative; overflow: auto; height: 368px; width: 100%;">
+                    <div id="transfers">
                     <table class="sortable" role="grid" style="width: 948px;">
-                        <tr role="row" style="height: 0px;">
+                        <tr>
                             <th>证券代码</th>
                             <th>证券名称</th>
                             <th>买/卖</th>
@@ -306,7 +304,6 @@
                             <th>状态</th>
                         </tr>
                         
-                        <div id="transfers">
                             {% for i in transfer %}
                             <tr role="row" class="odd">
                                 <td>{{i.ticker}}</td>
@@ -324,9 +321,8 @@
                                 <td>{{i.status}}</td>
                             </tr>
                             {% endfor %}
-                        </div>
-                        
                 </table>
+                </div>
                 </div>
             </div>
         </div>
@@ -438,7 +434,7 @@
                     var response = JSON.parse(req.responseText)
                     if (response.name != "该日没数据")
                     {
-                        var out = "";
+                        var out = "<table class='sortable' role='grid' style='width: 100%;'><tr><th>证券代码</th><th>证券名称</th><th>持仓数量</th><th>持仓成本</th><th>市价</th><th>市值</th><th>当日涨跌</th><th>权重</th></tr>";
                         
                         for(i = 0; i < response.results.length; i++) {
                             out += "<tr role='row' class='odd'><td>" + response.results[i].ticker + "</td><td>" + response.results[i].name + "</td><td>" + response.results[i].amount + "</td><td>" + response.results[i].cost + "</td><td>" + response.results[i].price + "</td><td>" + response.results[i].value + "</td>";
@@ -450,7 +446,7 @@
                             }
                             out += "<td>" + response.results[i].weight + "</td></tr>";
                         }
-                        
+                        out += "</table>"
                         document.getElementById('positions').innerHTML = out;
                     }
                     else
@@ -489,7 +485,7 @@
                     var response = JSON.parse(req.responseText)
                     if (response.name != "该日没数据")
                     {
-                        var out = "";
+                        var out = "<table class='sortable' role='grid' style='width: 948px;'><tr><th>证券代码</th><th>证券名称</th><th>买/卖</th><th>下单数量</th><th>成交数量</th><th>下单时间</th><th>成交时间</th><th>成交均价</th><th>状态</th></tr>";
                         
                         for(i = 0; i < response.results.length; i++) {
                             out += "<tr role='row' class='odd'><td>" + response.results[i].ticker + "</td><td>" + response.results[i].name + "</td>";
@@ -501,7 +497,7 @@
                             }
                             out += "<td>" + response.results[i].orderAmount + "</td><td>" + response.results[i].dealAmount + "</td><td class='sorting_1'>" + response.results[i].orderTime + "</td><td>" + response.results[i].dealTime + "</td><td>" + response.results[i].cost + "</td><td>" + response.results[i].status + "</td></tr>";
                         }
-                        
+                        out += "</table>"
                         document.getElementById('transfers').innerHTML = out;
                     }
                     else

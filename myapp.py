@@ -177,8 +177,7 @@ def strategy(name):
 @app.route('/positions', methods = ['POST'])
 def positions_ajax_request():
     date = request.form['date']
-    strategyID = int(request.form['strategyID'])
-    print(strategyID)
+    strategyID = int(date[11:])
     formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
     dateID = Survey.query.filter_by(date=formatDate).first()
     if dateID != None:
@@ -200,8 +199,7 @@ def positions_ajax_request():
 @app.route('/transfers', methods = ['POST'])
 def transfers_ajax_request():
     date = request.form['date']
-    strategyID = int(request.form['strategyID'])
-    print(strategyID)
+    strategyID = int(date[11:])
     formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
     dateID = Survey.query.filter_by(date=formatDate).first()
     if dateID != None:

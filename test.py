@@ -25,9 +25,9 @@ def positions_ajax_request():
             for i in range(len(pt_)):
                 pt[i] = {'ticker':pt_[i].ticker, 'name':pt_[i].name, 'amount':pt_[i].amount, 'cost':pt_[i].cost, 'price':pt_[i].price, 'value':pt_[i].value, 'increase':pt_[i].increase, 'weight':pt_[i].weight}
             
-            return jsonify(results=pt)
+            return jsonify(request.form)
     else:
-        return jsonify(request.form)
+        return jsonify({'name':"该日没数据"})
 
 
 
@@ -58,9 +58,9 @@ def transfers_ajax_request():
                 
                 ts[i] = {'ticker':ts_[i].ticker, 'name':ts_[i].name, 'direction':ts_[i].direction, 'orderAmount':ts_[i].orderAmount, 'dealAmount':deal_amount, 'orderTime':ts_[i].orderTime.strftime('%H:%M:%S'), 'dealTime':deal_time, 'cost':cost, 'status':ts_[i].status}
             
-            return jsonify(results=ts)
+            return jsonify(request.form)
     else:
-        return jsonify(request.form)
+        return jsonify({'name':"该日没数据"})
 
 
 if __name__ == "__main__":

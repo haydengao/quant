@@ -439,7 +439,8 @@
                     }
                     else
                     {
-                        document.getElementById('positions').innerHTML = response.name;
+                        var out = "<table class='sortable' id='new_sorttable_positions' role='grid' style='width: 100%;'><tr><th>证券代码</th><th>证券名称</th><th>持仓数量</th><th>持仓成本</th><th>市价</th><th>市值</th><th>当日涨跌</th><th>权重</th></tr><tr role='row' class='odd'><td valign='top' colspan='8' class='dataTables_empty'>没有数据</td><td>";
+                        document.getElementById('positions').innerHTML = out;
                     }
                 }
             }
@@ -492,7 +493,8 @@
                     }
                     else
                     {
-                        document.getElementById('transfers').innerHTML = response.name;
+                        var out = "<table class='sortable' id='new_sorttable_transfers' role='grid' style='width: 948px;'><tr><th>证券代码</th><th>证券名称</th><th>买/卖</th><th>下单数量</th><th>成交数量</th><th>下单时间</th><th>成交时间</th><th>成交均价</th><th>状态</th></tr><tr role='row' class='odd'><td valign='top' colspan='9' class='dataTables_empty'>没有数据</td><td>";
+                        document.getElementById('transfers').innerHTML = out;
                     }
                 }
             }

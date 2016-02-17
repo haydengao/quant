@@ -451,8 +451,10 @@
         var dt = document.getElementById('positions_date').value
         var id = document.getElementById('strategy_id').value
         var sec = document.getElementById('secret').value
-        var postVars = 'date='+dt+'strategyID='+id+'&secret='+sec
-        req.send(postVars)
+        var postdt = 'date='+dt+'&secret='+sec
+        var postid = 'strategyID='+id+'&secret='+sec
+        req.send(postdt)
+        req.send(postid)
         
         return false
     }
@@ -506,8 +508,10 @@
         var dt = document.getElementById('transfers_date').value
         var id = document.getElementById('strategy_id').value
         var sec = document.getElementById('secret').value
-        var postVars = 'date='+dt+'strategyID='+id+'&secret='+sec
-        req.send(postVars)
+        var postdt = 'date='+dt+'&secret='+sec
+        var postid = 'strategyID='+id+'&secret='+sec
+        req.send(postdt)
+        req.send(postid)
         
         return false
     }

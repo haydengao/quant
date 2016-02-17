@@ -171,7 +171,7 @@ def strategy(name):
 
         today = today.strftime('%Y-%m-%d')
 
-        return render_template('strategy.html',name = name,survey = survey,positions = positions,transfer = transfer,today = today)
+        return render_template('strategy.html',name = name,survey = survey,positions = positions,transfer = transfer,today = today,strategyID = sttg_id)
 
 
 @app.route('/positions', methods = ['POST'])

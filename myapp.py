@@ -182,7 +182,7 @@ def positions_ajax_request():
     dateID = Survey.query.filter_by(date=formatDate).first()
     if dateID != None:
         pt_ = Position.query.filter_by(strategy_id=strategyID, date_id=dateID.id).all()
-        if pt_ == None:
+        if pt_ == None or len(pt_) == 0:
             return jsonify({'name':"该日没数据"})
         else:
             pt = list(range(len(pt_)))
@@ -204,7 +204,7 @@ def transfers_ajax_request():
     dateID = Survey.query.filter_by(date=formatDate).first()
     if dateID != None:
         ts_ = Transfer.query.filter_by(strategy_id=strategyID, date_id=dateID.id).all()
-        if ts_ == None:
+        if ts_ == None or len(ts_) == 0:
             return jsonify({'name':"该日没数据"})
         else:
             ts = list(range(len(ts_)))

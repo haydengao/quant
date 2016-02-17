@@ -178,6 +178,7 @@ def strategy(name):
 def positions_ajax_request():
     date = request.form['date']
     strategyID = int(request.form['strategyID'])
+    print(strategyID)
     formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
     dateID = Survey.query.filter_by(date=formatDate).first()
     if dateID != None:
@@ -200,6 +201,7 @@ def positions_ajax_request():
 def transfers_ajax_request():
     date = request.form['date']
     strategyID = int(request.form['strategyID'])
+    print(strategyID)
     formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
     dateID = Survey.query.filter_by(date=formatDate).first()
     if dateID != None:

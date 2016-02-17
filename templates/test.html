@@ -99,21 +99,7 @@
                         else
                         {
                             var response = JSON.parse(req.responseText)
-                            if (response.name != "该日没数据")
-                            {
-                                var out = "<table>";
-                        
-                                for(i = 0; i < response.results.length; i++) {
-                                    out += "<tr><td>" + response.results[i].ticker + "</td><td>" + response.results[i].name + "</td><td>" + response.results[i].direction + "</td><td>" + response.results[i].orderAmount + "</td><td>" + response.results[i].dealAmount + "</td><td>" + response.results[i].orderTime + "</td><td>" + response.results[i].dealTime + "</td><td>" + response.results[i].cost + "</td><td>" + response.results[i].status + "</td></tr>";
-                                }
-                        
-                                out += "</table>";
-                                document.getElementById('transfers').innerHTML = out;
-                            }
-                            else
-                            {
-                                document.getElementById('transfers').innerHTML = response.name;
-                            }
+                            document.getElementById('transfers').innerHTML = response;
                         }
                     }
                 }

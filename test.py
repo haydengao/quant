@@ -25,7 +25,7 @@ def positions_ajax_request():
             for i in range(len(pt_)):
                 pt[i] = {'ticker':pt_[i].ticker, 'name':pt_[i].name, 'amount':pt_[i].amount, 'cost':pt_[i].cost, 'price':pt_[i].price, 'value':pt_[i].value, 'increase':pt_[i].increase, 'weight':pt_[i].weight}
             
-            return jsonify(request.form)
+            return jsonify(results=pt)
     else:
         return jsonify({'name':"该日没数据"})
 

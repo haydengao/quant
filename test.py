@@ -27,7 +27,7 @@ def positions_ajax_request():
             
             return jsonify(results=pt)
     else:
-        return jsonify({'name':"该日没数据"})
+        return jsonify(request.form)
 
 
 
@@ -60,7 +60,7 @@ def transfers_ajax_request():
             
             return jsonify(results=ts)
     else:
-        return jsonify({'name':"该日没数据"})
+        return jsonify(request.form)
 
 
 if __name__ == "__main__":

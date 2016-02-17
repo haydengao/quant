@@ -177,10 +177,11 @@ def strategy(name):
 @app.route('/positions', methods = ['POST'])
 def positions_ajax_request():
     date = request.form['date']
+    strategyID = request.form['strategyID']
     formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
     dateID = Survey.query.filter_by(date=formatDate).first()
     if dateID != None:
-        pt_ = Position.query.filter_by(strategy_id=1,date_id=dateID.id).all()
+        pt_ = Position.query.filter_by(strategy_id=strategyID, date_id=dateID.id).all()
         if pt_ == None:
             return jsonify({'name':"该日没数据"})
         else:
@@ -198,10 +199,11 @@ def positions_ajax_request():
 @app.route('/transfers', methods = ['POST'])
 def transfers_ajax_request():
     date = request.form['date']
+    strategyID = request.form['strategyID']
     formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
     dateID = Survey.query.filter_by(date=formatDate).first()
     if dateID != None:
-        ts_ = Transfer.query.filter_by(strategy_id=1,date_id=dateID.id).all()
+        ts_ = Transfer.query.filter_by(strategy_id=strategyID, date_id=dateID.id).all()
         if ts_ == None:
             return jsonify({'name':"该日没数据"})
         else:

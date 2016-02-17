@@ -449,8 +449,9 @@
         req.open('POST', '/positions')
         req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
         var dt = document.getElementById('positions_date').value
+        var id = document.getElementById('strategy_id').value
         var sec = document.getElementById('secret').value
-        var postVars = 'date='+dt+'&secret='+sec
+        var postVars = 'date='+dt+'strategyID='+id+'&secret='+sec
         req.send(postVars)
         
         return false
@@ -503,8 +504,9 @@
         req.open('POST', '/transfers')
         req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
         var dt = document.getElementById('transfers_date').value
+        var id = document.getElementById('strategy_id').value
         var sec = document.getElementById('secret').value
-        var postVars = 'date='+dt+'&secret='+sec
+        var postVars = 'date='+dt+'strategyID='+id+'&secret='+sec
         req.send(postVars)
         
         return false

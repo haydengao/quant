@@ -514,7 +514,8 @@
 
 <script>
     $(document).ready(function(){
-                      $('#dp1').datepicker({
+                      var $j = jQuery.noConflict();
+                      $j('#dp1').datepicker({
                                            format: "yyyy-mm-dd"
                                            })
                       .on('changeDate', function(ev){
@@ -531,7 +532,8 @@
 
 <script>
     $(document).ready(function(){
-                      $('#dp2').datepicker({
+                      var $j = jQuery.noConflict();
+                      $j('#dp2').datepicker({
                                            format: "yyyy-mm-dd"
                                            })
                       .on('changeDate', function(ev){

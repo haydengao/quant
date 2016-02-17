@@ -34,6 +34,8 @@
         <input type="hidden" id="transfers_date">
                 
         <div id="transfers"></div>
+        
+        <input type="hidden" id="strategy_id" value="2">
 
 
         <script>
@@ -74,7 +76,8 @@
                 req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
                 var dt = document.getElementById('positions_date').value
                 var sec = document.getElementById('secret').value
-                var postVars = 'date='+dt+'&secret='+sec
+                var id = document.getElementById('strategy_id').value
+                var postVars = 'date='+dt+'strategyID='+id+'&secret='+sec
                 req.send(postVars)
         
                 return false
@@ -119,7 +122,8 @@
                 req.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
                 var dt = document.getElementById('transfers_date').value
                 var sec = document.getElementById('secret').value
-                var postVars = 'date='+dt+'&secret='+sec
+                var id = document.getElementById('strategy_id').value
+                var postVars = 'date='+dt+'strategyID='+id+'&secret='+sec
                 req.send(postVars)
         
                 return false

@@ -424,7 +424,7 @@
                     var response = JSON.parse(req.responseText)
                     if (response.name != "该日没数据")
                     {
-                        var out = "<table class='sortable' role='grid' style='width: 100%;'><tr><th>证券代码</th><th>证券名称</th><th>持仓数量</th><th>持仓成本</th><th>市价</th><th>市值</th><th>当日涨跌</th><th>权重</th></tr>";
+                        var out = "<table class='sortable' id='new_sorttable_positions' role='grid' style='width: 100%;'><tr><th>证券代码</th><th>证券名称</th><th>持仓数量</th><th>持仓成本</th><th>市价</th><th>市值</th><th>当日涨跌</th><th>权重</th></tr>";
                         
                         for(i = 0; i < response.results.length; i++) {
                             out += "<tr role='row' class='odd'><td>" + response.results[i].ticker + "</td><td>" + response.results[i].name + "</td><td>" + response.results[i].amount + "</td><td>" + response.results[i].cost + "</td><td>" + response.results[i].price + "</td><td>" + response.results[i].value + "</td>";
@@ -438,6 +438,8 @@
                         }
                         out += "</table>"
                         document.getElementById('positions').innerHTML = out;
+                        var newTableObject = document.getElementById('new_sorttable_positions');
+                        sorttable.makeSortable(newTableObject);
                     }
                     else
                     {
@@ -475,7 +477,7 @@
                     var response = JSON.parse(req.responseText)
                     if (response.name != "该日没数据")
                     {
-                        var out = "<table class='sortable' role='grid' style='width: 948px;'><tr><th>证券代码</th><th>证券名称</th><th>买/卖</th><th>下单数量</th><th>成交数量</th><th>下单时间</th><th>成交时间</th><th>成交均价</th><th>状态</th></tr>";
+                        var out = "<table class='sortable' id='new_sorttable_transfers' role='grid' style='width: 948px;'><tr><th>证券代码</th><th>证券名称</th><th>买/卖</th><th>下单数量</th><th>成交数量</th><th>下单时间</th><th>成交时间</th><th>成交均价</th><th>状态</th></tr>";
                         
                         for(i = 0; i < response.results.length; i++) {
                             out += "<tr role='row' class='odd'><td>" + response.results[i].ticker + "</td><td>" + response.results[i].name + "</td>";
@@ -489,6 +491,8 @@
                         }
                         out += "</table>"
                         document.getElementById('transfers').innerHTML = out;
+                        var newTableObject = document.getElementById('new_sorttable_transfers');
+                        sorttable.makeSortable(newTableObject);
                     }
                     else
                     {

@@ -1713,10 +1713,10 @@ select:focus:invalid:focus {
 .input-append .add-on,
 .input-prepend .add-on {
   display: inline-block;
-  width: auto;
-  height: 24px;
+  width: 33px;
+  height: 30px;
   min-width: 16px;
-  padding: 4px 5px;
+  padding: 7px 7px;
   font-size: 14px;
   font-weight: normal;
   line-height: 20px;

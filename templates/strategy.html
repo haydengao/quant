@@ -7,6 +7,7 @@
     <base href=".">
     <script src="/static/js/jquery.min.js"></script>
     <script type="text/javascript" charset="utf-8" async="async" data-requirecontext="_" src="/static/js/bootstrap-datepicker.js"></script>
+    <script src="/static/js/highstock.js"></script>
     <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" src="/static/js/sorttable.js"></script>
     <script src="/static/js/bootstrap.min.js"></script>
     <link type="text/css" rel="stylesheet" href="/static/css/style.5c97a3af.css">
@@ -179,6 +180,87 @@
                                 <div class="chart" data-highcharts-chart="2">
                                     <div class="highcharts-container" id="highcharts-8" style="position: relative; overflow: hidden; width: 458px; height: 250px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
                                     </div>
+                                    <script>
+                                        $(function () {
+                                          $('.highcharts-8).highcharts('StockChart', {
+                                                                     
+                                                                     rangeSelector: {
+                                                                     enabled: false
+                                                                     },
+                                                                     
+                                                                     xAxis: {
+                                                                     type: 'datetime',
+                                                                     dateTimeLabelFormats: {
+                                                                     second: '%Y-%m-%d<br/>%H:%M:%S',
+                                                                     minute: '%Y-%m-%d<br/>%H:%M',
+                                                                     hour: '%Y-%m-%d<br/>%H:%M',
+                                                                     day: '%Y-%m-%d',
+                                                                     week: '%Y-%m-%d',
+                                                                     month: '%Y-%m',
+                                                                     year: '%Y'
+                                                                     }
+                                                                     },
+                                                                     
+                                                                     yAxis: {
+                                                                     opposite:false,
+                                                                     labels: {
+                                                                     formatter: function () {
+                                                                     return this.value + '%';
+                                                                     }
+                                                                     },
+                                                                     plotLines: [{
+                                                                                 value: 0,
+                                                                                 width: 2,
+                                                                                 color: 'silver'
+                                                                                 }]
+                                                                     },
+                                                                     navigation: {
+                                                                     buttonOptions: {
+                                                                     enabled: false
+                                                                     }
+                                                                     },
+                                                                     navigator: {
+                                                                     enabled: false
+                                                                     },
+                                                                     scrollbar: {
+                                                                     enabled: false
+                                                                     },
+                                                                     
+                                                                     plotOptions: {
+                                                                     series: {
+                                                                     compare: 'percent'
+                                                                     }
+                                                                     },
+                                                                     
+                                                                     tooltip: {
+                                                                     dateTimeLabelFormats: {
+                                                                     second: '%Y-%m-%d<br/>%H:%M:%S',
+                                                                     minute: '%Y-%m-%d<br/>%H:%M',
+                                                                     hour: '%Y-%m-%d<br/>%H:%M',
+                                                                     day: '%Y-%m-%d',
+                                                                     week: '%Y-%m-%d',
+                                                                     month: '%Y-%m',
+                                                                     year: '%Y'
+                                                                     },
+                                                                     pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+                                                                     valueDecimals: 2
+                                                                     },
+                                                                     
+                                                                     series: [{
+                                                                              _colorIndex: 0,
+                                                                              _symbolIndex: 0,
+                                                                              data:[[1234088000000,18],[1235347200000,17.21],[1235433600000,17.17],[1455753600000,20]],
+                                                                              name:"策略"
+                                                                              },{
+                                                                              _colorIndex: 1,
+                                                                              _symbolIndex: 1,
+                                                                              data:[[1234088000000,13],[1235347200000,12.42],[1235433600000,12.89],[1455753600000,13]],
+                                                                              name:"沪深300"
+                                                                              }]
+                                                                     });
+                                          
+                                          });
+                                    </script>
                                 </div>
                             </div>
                         </div>

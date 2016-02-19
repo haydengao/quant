@@ -1091,7 +1091,7 @@ input[type="tel"],
 input[type="color"],
 .uneditable-input {
   display: inline-block;
-  height: 24px;
+  height: 30px;
   padding: 4px 6px;
   margin-bottom: 10px;
   font-size: 14px;
@@ -1403,7 +1403,7 @@ textarea.span3,
 input.span2,
 textarea.span2,
 .uneditable-input.span2 {
-  width: 80px;
+  width: 87px;
 }
 
 input.span1,

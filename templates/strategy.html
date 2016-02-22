@@ -187,8 +187,8 @@
                                           
                                           
                                           {% for j in range({{survey|length}}) %}
-                                          data_strategy[j] = [{{survey[j].date}}, {{survey[j].marketValue}} + {{survey[j].enable}}];
-                                          data_benchmark[j] = [{{survey[j].date}}, {{survey[j].benchmark}}];
+                                          data_strategy[{{j}}] = [{{survey[j].date}}, {{survey[j].marketValue}} + {{survey[j].enable}}];
+                                          data_benchmark[{{j}}] = [{{survey[j].date}}, {{survey[j].benchmark}}];
                                           {% endfor %}
                                           
                                           $('#highcharts-6').highcharts('StockChart', {

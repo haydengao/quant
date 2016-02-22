@@ -292,6 +292,16 @@
                                     </div>
                                     <script>
                                         $(function () {
+                                          
+                                          var dates = {{survey.date}};
+                                          var pullbacks = {{survey.pullback}};
+                                          
+                                          var pullback_data = new Array(dates.length);
+                                          
+                                          for(i = 0; i < dates.length; i++) {
+                                          pullback_data[i] = [dates[i],pullbacks[i]]
+                                          }
+
                                           $('#highcharts-4').highcharts('StockChart', {
                                                                      
                                                                      rangeSelector: {
@@ -359,8 +369,8 @@
                                                                      series: [{
                                                                               _colorIndex: 0,
                                                                               _symbolIndex: 0,
-                                                                              data:[[1234088000000,18],[1235347200000,17.21],[1235433600000,17.17],[1455753600000,20]],
-                                                                              name:"策略"
+                                                                              data:pullback_data,
+                                                                              name:"回撤"
                                                                               }]
                                                                      });
                                           
@@ -519,6 +529,16 @@
                                 </div>
                                 <script>
                                     $(function () {
+                                      
+                                      var dates = {{survey.date}};
+                                      var alphas = {{survey.alpha}};
+                                      
+                                      var alpha_data = new Array(dates.length);
+                                      
+                                      for(i = 0; i < dates.length; i++) {
+                                      alpha_data[i] = [dates[i],alphas[i]]
+                                      }
+                                      
                                       $('#highcharts-8').highcharts('StockChart', {
                                                                  
                                                                  rangeSelector: {
@@ -584,7 +604,7 @@
                                                                  series: [{
                                                                           _colorIndex: 0,
                                                                           _symbolIndex: 0,
-                                                                          data:[[1234088000000,18],[1235347200000,17.21],[1235433600000,17.17],[1455753600000,20]],
+                                                                          data:alpha_data,
                                                                           name:"阿尔法"
                                                                           }]
                                                                  });
@@ -602,6 +622,16 @@
                                 </div>
                                 <script>
                                     $(function () {
+                                      
+                                      var dates = {{survey.date}};
+                                      var betas = {{survey.beta}};
+                                      
+                                      var beta_data = new Array(dates.length);
+                                      
+                                      for(i = 0; i < dates.length; i++) {
+                                      beta_data[i] = [dates[i],betas[i]]
+                                      }
+                                      
                                       $('#highcharts-12').highcharts('StockChart', {
                                                                  
                                                                  rangeSelector: {
@@ -667,7 +697,7 @@
                                                                  series: [{
                                                                           _colorIndex: 0,
                                                                           _symbolIndex: 0,
-                                                                          data:[[1234088000000,18],[1235347200000,17.21],[1235433600000,17.17],[1455753600000,20]],
+                                                                          data:beta_data,
                                                                           name:"贝塔"
                                                                           }]
                                                                  });
@@ -687,6 +717,16 @@
                                 </div>
                                 <script>
                                     $(function () {
+                                      
+                                      var dates = {{survey.date}};
+                                      var informations = {{survey.information}};
+                                      
+                                      var information_data = new Array(dates.length);
+                                      
+                                      for(i = 0; i < dates.length; i++) {
+                                      information_data[i] = [dates[i],informations[i]]
+                                      }
+                                      
                                       $('#highcharts-16').highcharts('StockChart', {
                                                                  
                                                                  rangeSelector: {
@@ -752,7 +792,7 @@
                                                                  series: [{
                                                                           _colorIndex: 0,
                                                                           _symbolIndex: 0,
-                                                                          data:[[1234088000000,18],[1235347200000,17.21],[1235433600000,17.17],[1455753600000,20]],
+                                                                          data:information_data,
                                                                           name:"信息比率"
                                                                           }]
                                                                  });
@@ -770,6 +810,16 @@
                                 </div>
                                 <script>
                                     $(function () {
+                                      
+                                      var dates = {{survey.date}};
+                                      var sharps = {{survey.sharp}};
+                                      
+                                      var sharp_data = new Array(dates.length);
+                                      
+                                      for(i = 0; i < dates.length; i++) {
+                                      sharp_data[i] = [dates[i],sharps[i]]
+                                      }
+                                      
                                       $('#highcharts-20').highcharts('StockChart', {
                                                                  
                                                                  rangeSelector: {
@@ -835,7 +885,7 @@
                                                                  series: [{
                                                                           _colorIndex: 0,
                                                                           _symbolIndex: 0,
-                                                                          data:[[1234088000000,18],[1235347200000,17.21],[1235433600000,17.17],[1455753600000,20]],
+                                                                          data:sharp_data,
                                                                           name:"夏普比率"
                                                                           }]
                                                                  });
@@ -855,6 +905,16 @@
                                 </div>
                                 <script>
                                     $(function () {
+                                      
+                                      var dates = {{survey.date}};
+                                      var fluctuations = {{survey.fluctuation}};
+                                      
+                                      var fluctuation_data = new Array(dates.length);
+                                      
+                                      for(i = 0; i < dates.length; i++) {
+                                      fluctuation_data[i] = [dates[i],fluctuations[i]]
+                                      }
+                                      
                                       $('#highcharts-24').highcharts('StockChart', {
                                                                  
                                                                  rangeSelector: {
@@ -920,7 +980,7 @@
                                                                  series: [{
                                                                           _colorIndex: 0,
                                                                           _symbolIndex: 0,
-                                                                          data:[[1234088000000,18],[1235347200000,17.21],[1235433600000,17.17],[1455753600000,20]],
+                                                                          data:fluctuation_data,
                                                                           name:"收益波动率"
                                                                           }]
                                                                  });

@@ -142,8 +142,8 @@ def strategy(name):
         sttg_id = strategy_.id
 
         survey_ = Survey.query.filter_by(strategy_id=sttg_id).all()
-        list_ = list(range(len(survey_)))
-        survey = {'date':list_,'daily':list_,'profit':list_,'sharp':list_,'marketValue':list_,'enable':list_,'benchmark':list_,'pullback':list_,'alpha':list_,'beta':list_,'information':list_,'fluctuation':list_}
+        
+        survey = {'date':list(range(len(survey_))),'daily':list(range(len(survey_))),'profit':list(range(len(survey_))),'sharp':list(range(len(survey_))),'marketValue':list(range(len(survey_))),'enable':list(range(len(survey_))),'benchmark':list(range(len(survey_))),'pullback':list(range(len(survey_))),'alpha':list(range(len(survey_))),'beta':list(range(len(survey_))),'information':list(range(len(survey_))),'fluctuation':list(range(len(survey_)))}
         
         for i in range(len(survey_)):
             survey['date'][i] = survey_[i].date.strftime('%s')+'000'

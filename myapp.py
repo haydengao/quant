@@ -146,7 +146,7 @@ def strategy(name):
         survey = {'date':list(range(len(survey_))),'daily':list(range(len(survey_))),'profit':list(range(len(survey_))),'sharp':list(range(len(survey_))),'marketValue':list(range(len(survey_))),'enable':list(range(len(survey_))),'benchmark':list(range(len(survey_))),'pullback':list(range(len(survey_))),'alpha':list(range(len(survey_))),'beta':list(range(len(survey_))),'information':list(range(len(survey_))),'fluctuation':list(range(len(survey_)))}
         
         for i in range(len(survey_)):
-            survey['date'][i] = survey_[i].date.strftime('%s')+'000'
+            survey['date'][i] = int(survey_[i].date.strftime('%s')+'000')
             survey['daily'][i] = survey_[i].daily
             survey['profit'][i] = survey_[i].profit
             survey['sharp'][i] = survey_[i].sharp

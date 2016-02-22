@@ -6,4 +6,5 @@ app = Flask(__name__)
 @app.route('/')
 def strategy():
     listt = [{'a':'1','b':'2','c':'3'},{'a':'4','b':'5','c':'6'}]
-    return render_template('test.html',listt)
+    a = 'apple'
+    return render_template('test.html',listt,a)

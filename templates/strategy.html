@@ -188,16 +188,14 @@
                                           var enables = {{survey.enable}};
                                           var marketValues = {{survey.marketValue}};
                                           
-                                          var strategy_data = new Array(dates.length)
-                                          var benchmark_data = new Array(dates.length)
+                                          var strategy_data = new Array(dates.length);
+                                          var benchmark_data = new Array(dates.length);
                                           
                                           for(i = 0; i < dates.length; i++) {
                                           strategy_data[i] = [dates[i],enables[i]+marketValues[i]]
                                           benchmark_data[i] = [dates[i],benchmarks[i]]
                                           }
                                           
-                                          console.log(strategy_data);
-                                          console.log(benchmark_data);
 
                                           $('#highcharts-6').highcharts('StockChart', {
                                                                      
@@ -269,12 +267,12 @@
                                                                      series: [{
                                                                               _colorIndex: 0,
                                                                               _symbolIndex: 0,
-                                                                              data:[[1234088000000,18],[1235347200000,17.21],[1235433600000,17.17],[1455753600000,20]],
+                                                                              data:strategy_data,
                                                                               name:"策略"
                                                                               },{
                                                                               _colorIndex: 1,
                                                                               _symbolIndex: 1,
-                                                                              data:[[1234088000000,13],[1235347200000,12.42],[1235433600000,12.89],[1455753600000,13]],
+                                                                              data:benchmark_data,
                                                                               name:"沪深300"
                                                                               }]
                                                                      });

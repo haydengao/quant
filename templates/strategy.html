@@ -182,13 +182,6 @@
                                     </div>
                                     <script>
                                         $(function () {
-                                          var data_strategy = new Array({{survey|length}});
-                                          var data_benchmark = new Array({{survey|length}});
-                                          for(var i=0;i<{{survey|length}};i++){
-                                          data_strategy[i] = [{{survey[i].date}}, {{survey[i].marketValue}} + {{survey[i].enable}}];
-                                          data_benchmark[i] = [{{survey[i].date}}, {{survey[i].benchmark}}]
-                                          }
-                                          
                                           $('#highcharts-6').highcharts('StockChart', {
                                                                      
                                                                      rangeSelector: {
@@ -259,12 +252,12 @@
                                                                      series: [{
                                                                               _colorIndex: 0,
                                                                               _symbolIndex: 0,
-                                                                              data:data_strategy,
+                                                                              data:[[1234088000000,18],[1235347200000,17.21],[1235433600000,17.17],[1455753600000,20]],
                                                                               name:"策略"
                                                                               },{
                                                                               _colorIndex: 1,
                                                                               _symbolIndex: 1,
-                                                                              data:data_benchmark,
+                                                                              data:[[1234088000000,13],[1235347200000,12.42],[1235433600000,12.89],[1455753600000,13]],
                                                                               name:"沪深300"
                                                                               }]
                                                                      });

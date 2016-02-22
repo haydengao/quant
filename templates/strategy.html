@@ -183,8 +183,9 @@
                                     <script>
                                         $(function () {
                                           
-                                          var datas = {{survey.date}};
-                                          console.log(datas);
+                                          var dates = {{survey.date}};
+                                          var benchmarks = {{survey.benchmark}};
+                                          var strategy = {{survey.enable}} + {{survey.marketValue}};
 
                                           $('#highcharts-6').highcharts('StockChart', {
                                                                      

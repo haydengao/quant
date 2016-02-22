@@ -181,7 +181,10 @@
                                     <div class="highcharts-container" id="highcharts-6" style="position: relative; overflow: hidden; width: 458px; height: 250px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
                                     </div>
                                     <script>
-                                        $(function () {                                          
+                                        $(function () {
+                                          
+                                          var datas = {{survey}};
+                                          console.log(datas);
 
                                           $('#highcharts-6').highcharts('StockChart', {
                                                                      

@@ -184,11 +184,20 @@
                                         $(function () {
                                           
                                           var dates = {{survey.date}};
-                                          console.log(dates);
                                           var benchmarks = {{survey.benchmark}};
-                                          console.log(benchmarks);
-                                          var strategy = {{survey.enable}} + {{survey.marketValue}};
-                                          console.log(strategy);
+                                          var enables = {{survey.enable}};
+                                          var marketValues = {{survey.marketValue}};
+                                          
+                                          var strategy_data = new Array(dates.length)
+                                          var benchmark_data = new Array(dates.length)
+                                          
+                                          for(i = 0; i < dates.length; i++) {
+                                          strategy_data[i] = [dates[i],enables[i]+marketValues[i]]
+                                          benchmark_data[i] = [datas[i],benchmarks[i]]
+                                          }
+                                          
+                                          console.log(strategy_data);
+                                          console.log(benchmark_data);
 
                                           $('#highcharts-6').highcharts('StockChart', {
                                                                      

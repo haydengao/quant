@@ -127,31 +127,31 @@
 </div>
 <ul class="summary clearfix">
     <li>
-            {% if survey.profit > 0 %}
-            <span class="value change-up">+{{survey.profit}}%</span>
+            {% if survey[-1].profit > 0 %}
+            <span class="value change-up">+{{survey[-1].profit}}%</span>
             {% else %}
-            <span class="value change-down">{{survey.profit}}%</span>
+            <span class="value change-down">{{survey[-1].profit}}%</span>
             {% endif %}
     <span class="name">累计收益</span>
 </li>
 <li>
-    {% if survey.daily > 0 %}
-    <span class="value change-up">+{{survey.daily}}%</span>
+    {% if survey[-1].daily > 0 %}
+    <span class="value change-up">+{{survey[-1].daily}}%</span>
     {% else %}
-    <span class="value change-down">{{survey.daily}}%</span>
+    <span class="value change-down">{{survey[-1].daily}}%</span>
     {% endif %}
     <span class="name">当日收益</span>
 </li>
 <li>
-    <span class="value">{{survey.sharp}}</span>
+    <span class="value">{{survey[-1].sharp}}</span>
     <span class="name">夏普比率</span>
 </li>
 <li>
-    <span class="value">{{survey.marketValue}}</span>
+    <span class="value">{{survey[-1].marketValue}}</span>
     <span class="name">持仓市值</span>
 </li>
 <li>
-    <span class="value">{{survey.enable}}</span>
+    <span class="value">{{survey[-1].enable}}</span>
     <span class="name">可用金额</span>
 </li>
 </ul>
@@ -483,15 +483,15 @@
                         <dl><dt>时间:</dt>
                             <dd>{{today}}</dd>
                             <dt>阿尔法:</dt>
-                            <dd>{{survey.alpha}}</dd>
+                            <dd>{{survey[-1].alpha}}</dd>
                             <dt>贝塔:</dt>
-                            <dd>{{survey.beta}}</dd>
+                            <dd>{{survey[-1].beta}}</dd>
                             <dt>信息比率:</dt>
-                            <dd>{{survey.information}}</dd>
+                            <dd>{{survey[-1].information}}</dd>
                             <dt>夏普比率:</dt>
-                            <dd>{{survey.sharp}}</dd>
+                            <dd>{{survey[-1].sharp}}</dd>
                             <dt>收益波动率:</dt>
-                            <dd>{{survey.fluctuation}}</dd>
+                            <dd>{{survey[-1].fluctuation}}</dd>
                         </dl>
                     </div>
                 </div>

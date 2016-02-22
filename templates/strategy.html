@@ -184,10 +184,10 @@
                                         $(function () {
                                           var data_strategy = new Array({{survey|length}});
                                           var data_benchmark = new Array({{survey|length}});
-                                          var aaa = new Array[2];
-                                          var bbb = new Array[2];
                                           
                                           {% for i in range({{survey|length}}) %}
+                                          var aaa = new Array[2];
+                                          var bbb = new Array[2];
                                           aaa[0] = {{survey[i].date}};
                                           aaa[1] = {{survey[i].marketValue}} + {{survey[i].enable}};
                                           bbb[0] = {{survey[i].date}};

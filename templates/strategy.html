@@ -186,14 +186,8 @@
                                           var data_benchmark = new Array({{survey|length}});
                                           
                                           for(var i=0;i<{{survey|length}};i++){
-                                          var ds_point = new Array(2);
-                                          var db_point = new Array(2);
-                                          ds_point[0] = {{survey[i].date}};
-                                          ds_point[1] = {{survey[i].marketValue}};
-                                          db_point[0] = {{survey[i].date}};
-                                          db_point[1] = {{survey[i].benchmark}};
-                                          data_strategy[i] = ds_point;
-                                          data_benchmark[i] = db_point;
+                                          data_strategy[i] = ['{{survey[i].date}}', '{{survey[i].marketValue}}' + '{{survey[i].enable}}'];
+                                          data_benchmark[i] = ['{{survey[i].date}}', '{{survey[i].benchmark}}'];
                                           }
                                           
                                           $('#highcharts-6').highcharts('StockChart', {

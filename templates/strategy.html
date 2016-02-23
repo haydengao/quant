@@ -196,6 +196,12 @@
                                           benchmark_data[i] = [dates[i],benchmarks[i]]
                                           }
                                           
+                                          Highcharts.setOptions({
+                                                                global: {
+                                                                timezoneOffset: 6 * 60
+                                                                }
+                                                                });
+                                          
 
                                           $('#highcharts-6').highcharts('StockChart', {
                                                                      

@@ -159,7 +159,7 @@ def strategy(name):
             survey['information'][i] = survey_[i].information
             survey['fluctuation'][i] = survey_[i].fluctuation
 
-        transfer_ = Transfer.query.filter_by(strategy_id=sttg_id,date_id=Survey.query.filter_by(date=today).first().id).all()
+        transfer_ = Transfer.query.filter_by(strategy_id=sttg_id,date_id=Survey.query.filter_by(strategy_id=sttg_id,date=today).first().id).all()
         transfer = list(range(len(transfer_)))
         
         for i in range(len(transfer_)):
@@ -177,7 +177,7 @@ def strategy(name):
             
             transfer[i] = {'ticker':transfer_[i].ticker,'name':transfer_[i].name,'direction':transfer_[i].direction,'orderAmount':transfer_[i].orderAmount,'dealAmount':deal_amount,'orderTime':transfer_[i].orderTime.strftime('%H:%M:%S'),'dealTime':deal_time,'cost':cost,'status':transfer_[i].status}
 
-        positions_ = Position.query.filter_by(strategy_id=sttg_id,date_id=Survey.query.filter_by(date=date1).first().id).all()
+        positions_ = Position.query.filter_by(strategy_id=sttg_id,date_id=Survey.query.filter_by(strategy_id=sttg_id,date=date1).first().id).all()
         positions = list(range(len(positions_)))
 
         for i in range(len(positions_)):
@@ -193,7 +193,7 @@ def positions_ajax_request():
     date = request.form['date']
     strategyID = int(request.form['strategyID'])
     formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
-    dateID = Survey.query.filter_by(date=formatDate).first()
+    dateID = Survey.query.filter_by(strategy_id=strategyID,date=formatDate).first()
     if dateID != None:
         pt_ = Position.query.filter_by(strategy_id=strategyID, date_id=dateID.id).all()
         if pt_ == None or len(pt_) == 0:
@@ -215,7 +215,7 @@ def transfers_ajax_request():
     date = request.form['date']
     strategyID = int(request.form['strategyID'])
     formatDate = datetime.date(int(date[0:4]),int(date[5:7]),int(date[8:10]))
-    dateID = Survey.query.filter_by(date=formatDate).first()
+    dateID = Survey.query.filter_by(strategy_id=strategyID,date=formatDate).first()
     if dateID != None:
         ts_ = Transfer.query.filter_by(strategy_id=strategyID, date_id=dateID.id).all()
         if ts_ == None or len(ts_) == 0:
